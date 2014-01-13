@@ -1,0 +1,77 @@
+* {
+	box-sizing: border-box;
+	/* Getting rid of Safari highlighting */
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+html, body {
+	background: #FFF;
+	height: 100%;
+	margin: 0;
+	min-height: 480px;
+	min-width: 320px;
+	padding: 0;
+	width: 100%;
+}
+
+.card {
+	background-color: #E74C3C; 
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+.card h1 {
+	color: #FFF;
+	font-family: 'Roboto';
+	font-size: 64px;
+	line-height: 64px;
+	left: 50%;
+	margin: 0 0 0 -120px;
+	position: absolute;
+	text-transform: uppercase;
+	top: 45px;
+	width: 240px;	
+}
+
+.card p {
+	color: #FFF;
+	font-family: 'Roboto Light';
+	left: 50%;
+	line-height: 130%;
+	margin-left: -120px;
+	position: absolute;
+	text-transform: uppercase;
+	top: 160px;
+	width: 240px;
+}
+
+#intro-view {
+	background-color: #F00;
+}
+
+.view {
+	height: 100%;
+	opacity: 0;
+	pointer-events: none; /* Any view is the target of mouse events (maybe children)*/
+	position: fixed;
+	top: 0;
+	width: 100%;	
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-transition: opacity .35s ease-out;
+	-webkit-transition: opacity 
+}
+.view.active{
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	pointer-events: none;
+	opacity: 1;
+}
