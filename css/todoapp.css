@@ -4,6 +4,23 @@
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
+img { margin: 0; padding: 0;}
+
+#appLogo {
+	margin: 0;
+	max-width: 512px;
+	padding: 0;
+	position: absolute;
+	-webkit-transition: -webkit-transform .875s ease-out;
+	-webkit-transform: TranslateY(-512px) rotate(0deg);
+	transform: TranslateY(-512px) rotate(0deg);
+	width: 100%;
+}
+#appLogo.active { 
+	-webkit-transform: TranslateY(0px) rotate(359deg); 
+	transform: TranslateY(0px) rotate(359deg);
+}
+
 html, body {
 	background: #FFF;
 	height: 100%;
@@ -22,34 +39,87 @@ html, body {
 	top: 0;
 	width: 100%;
 }
+.card.current{
+	-webkit-transition: opacity .35s ease-out .4s;
+	-moz-transition: opacity .35s ease-out .4s;
+	-ms-transition: opacity .35s ease-out .4s;
+	-o-transition: opacity .35s ease-out .4s;
+	transition: opacity .35s ease-out .4s;
+	opacity: 1;
+}
+/* If it's not the current card, we hide it */
+.card.next { visibility: hidden;}
+/* We hide the previous card */
+.card.previous {
+	-webkit-transition: opacity .24s ease-out;
+	-moz-transition: opacity .24s ease-out;
+	-ms-transition: opacity .24s ease-out;
+	-o-transition: opacity .24s ease-out;
+	transition: opacity .24s ease-out;
+	opacity: 0;
+}
 
-.card h1 {
+.cardDescription {
+	margin: 0;
+	opacity: 0;
+	padding: 0;
+	position: absolute;
+	bottom: 96px;
+	width: 100%;
+	-webkit-transition: opacity .375s ease-out;
+	transition: opacity .375s ease-out;
+}
+.cardDescription.active {
+   opacity: 1;	
+}
+
+.cardDescription h1 {
 	color: #FFF;
 	font-family: 'Roboto';
-	font-size: 64px;
-	line-height: 64px;
-	left: 50%;
-	margin: 0 0 0 -120px;
-	position: absolute;
+	font-size: 2em;
+	text-align: center;
 	text-transform: uppercase;
-	top: 45px;
-	width: 240px;	
+	margin: 0;
+	padding: 0;
 }
 
-.card p {
+.cardDescription h2 {
 	color: #FFF;
 	font-family: 'Roboto Light';
-	left: 50%;
-	line-height: 130%;
-	margin-left: -120px;
-	position: absolute;
-	text-transform: uppercase;
-	top: 160px;
-	width: 240px;
+	font-size: 1em;
+	margin: 0;
+	padding: 0;
+	text-align: center;
 }
 
-#intro-view {
-	background-color: #F00;
+.cardDescription p {
+	color: #FFF;
+	font-family: 'Roboto Light';
+	font-size: 0.9em;
+	margin: 16px 0;
+	padding: 0;
+	text-align: center;
+
+}
+
+#intro-view { background-color: #F00;}
+
+.next {
+	color: #FFF;
+	border: 1px solid #FFF;
+	bottom: 32px;
+	font-family: 'Roboto Light';
+	left: 50%;
+	margin-left: -32px;
+	padding: 8px;
+	position: absolute;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	width: 64px;
+}
+.next:hover {
+	color: #FF0;
 }
 
 .view {
@@ -65,7 +135,7 @@ html, body {
 	-o-transform: translateZ(0);
 	transform: translateZ(0);
 	-webkit-transition: opacity .35s ease-out;
-	-webkit-transition: opacity 
+	/*-webkit-transition: opacity;*/
 }
 .view.active{
 	-webkit-transform: translateZ(0);
