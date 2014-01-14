@@ -5,13 +5,13 @@
 TA.View.Intro = function(elementID){
 
 	var  element = document.getElementById(elementID)
-		, appLogo = document.getElementById('appLogo')
-		, cardDesc = document.getElementById('cardDesc')
-		, cards = element.querySelectorAll('.card')
-		, next = element.querySelectorAll('.next')
-		//, options = element.querySelectorAll('.options a')
-		, currentCard = 0
-		, currentCardControl = null;
+	   , appLogo = document.getElementById('appLogo')
+      , firstCard = document.getElementById('firstCard')
+	   , cards = element.querySelectorAll('.card')
+	   , next = element.querySelectorAll('.next')
+	 //, options = element.querySelectorAll('.options a')
+	   , currentCard = 0
+	   , currentCardControl = null;
   	 //, user = TA.App.getUser();
 
 	function addEventListeners(){
@@ -19,7 +19,6 @@ TA.View.Intro = function(elementID){
 			next[n].addEventListener('click', onNextClick, false);
 			next[n].addEventListener('touchend', onNextClick, false);
 		}
-		console.log(next);	
 		/*for(var o = 0; o < options.length; o++){
 			options[o].addEventListener('click', onOptionSelect, false);
 			options[o].addEventListener('touchend', onOptionSelect, false);
@@ -66,15 +65,14 @@ TA.View.Intro = function(elementID){
 	}
 
 	function onNextClick(evt){
-		console.log('Next Button clicked');
 		evt.preventDefault();
 		
-		destructCard();
+		//destructCard();
 		
 		var  nextCard = currentCard + 1
 			, currentCardElement = cards[currentCard]
 			, nextCardElement = cards[nextCard];
-			//, options = currentCardElement.querySelector('.options');
+		// , options = currentCardElement.querySelector('.options');
 
 		/* if (!!options) {
 			var  selectedOption = options.querySelector('.selected')
@@ -97,7 +95,7 @@ TA.View.Intro = function(elementID){
 			currentCard++;
 			// constructCard();
 		} else {
-			//TA.App.dispatchEvent(element, 'introcomplete');
+			TA.App.dispatchEvent(element, 'introcomplete');
 		}
 	}
 
@@ -125,7 +123,7 @@ TA.View.Intro = function(elementID){
 			appLogo.classList.add('active');
 		}, 2000);
 		setTimeout(function(){
-			cardDesc.classList.add('active');
+			firstCard.classList.add('active');
 		}, 3000);
 		//constructCard();
 	};

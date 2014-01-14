@@ -35,6 +35,7 @@ html, body {
 	background-color: #E74C3C; 
 	height: 100%;
 	left: 0;
+	opacity: 0;
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -59,19 +60,6 @@ html, body {
 	opacity: 0;
 }
 
-.cardDescription {
-	margin: 0;
-	opacity: 0;
-	padding: 0;
-	position: absolute;
-	bottom: 96px;
-	width: 100%;
-	-webkit-transition: opacity .375s ease-out;
-	transition: opacity .375s ease-out;
-}
-.cardDescription.active {
-   opacity: 1;	
-}
 
 .cardDescription h1 {
 	color: #FFF;
@@ -99,30 +87,37 @@ html, body {
 	margin: 16px 0;
 	padding: 0;
 	text-align: center;
-
 }
 
-#intro-view { background-color: #F00;}
+#firstCard {
+	margin: 0;
+	opacity: 0;
+	padding: 0;
+	position: absolute;
+	bottom: 72px;
+	width: 100%;
+	-webkit-transition: opacity .375s ease-out;
+	transition: opacity .375s ease-out;
+}
+#firstCard.active { opacity: 1; }
+
+#intro-view { background-color: #E74C3C;}
 
 .next {
 	color: #FFF;
 	border: 1px solid #FFF;
-	bottom: 32px;
+	display: block;
 	font-family: 'Roboto Light';
-	left: 50%;
-	margin-left: -32px;
+	margin: 0 auto;
 	padding: 8px;
-	position: absolute;
 	text-align: center;
 	text-decoration: none;
 	text-transform: uppercase;
-	width: 64px;
-}
-.next:hover {
-	color: #FF0;
+	width: 128px;
 }
 
 .view {
+	display: block;
 	height: 100%;
 	opacity: 0;
 	pointer-events: none; /* Any view is the target of mouse events (maybe children)*/
@@ -135,13 +130,13 @@ html, body {
 	-o-transform: translateZ(0);
 	transform: translateZ(0);
 	-webkit-transition: opacity .35s ease-out;
-	/*-webkit-transition: opacity;*/
+	transition: opacity .35s ease-out;
 }
 .view.active{
 	-webkit-transform: translateZ(0);
 	-moz-transform: translateZ(0);
 	-o-transform: translateZ(0);
 	transform: translateZ(0);
-	pointer-events: none;
+	pointer-events: auto;
 	opacity: 1;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html manifest="cache.manifest">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta charset="utf-8" />
@@ -18,22 +18,22 @@
 			<section id="intro-view" class="view">
 				<div class="card">
 					<img id="appLogo" src="img/applogo.png" />
-					<div id="cardDesc" class="cardDescription">
+					<div id="firstCard" class="cardDescription">
 						<h1>Flat TODO List</h1>
 						<h2>By RubensDEV</h2>
 						<p>Welcome to the app. I hope you enjoy it.</p>
+						<a class="next" href="#">Next</a>
 					</div>
-					<a class="next" href="#">Next</a>
 				</div>
 				<div class="card">
-					<div class="cardDescription">
-						<h2>This is a message.</h2>
+					<div id="secondCard" class="cardDescription">
+						<h2>Tasks</h2>
 						<p>This is a paragraph with some demo content 
 						and it takes some time in thinking what the hell
                   to put here.</p>
+						<a class="next" href="#">Ok,I got it</a>
 					</div>
-					<a class="next" href="#">Next</a>
-				</div>
+				</div> 
 			</section>
 		</section>
 		<!-- TweenJS-->
