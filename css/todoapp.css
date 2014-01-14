@@ -1,0 +1,142 @@
+* {
+	box-sizing: border-box;
+	/* Getting rid of Safari highlighting */
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+img { margin: 0; padding: 0;}
+
+#appLogo {
+	margin: 0;
+	max-width: 512px;
+	padding: 0;
+	position: absolute;
+	-webkit-transition: -webkit-transform .875s ease-out;
+	-webkit-transform: TranslateY(-512px) rotate(0deg);
+	transform: TranslateY(-512px) rotate(0deg);
+	width: 100%;
+}
+#appLogo.active { 
+	-webkit-transform: TranslateY(0px) rotate(359deg); 
+	transform: TranslateY(0px) rotate(359deg);
+}
+
+html, body {
+	background: #FFF;
+	height: 100%;
+	margin: 0;
+	min-height: 480px;
+	min-width: 320px;
+	padding: 0;
+	width: 100%;
+}
+
+.card {
+	background-color: #E74C3C; 
+	height: 100%;
+	left: 0;
+	opacity: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+.card.current{
+	-webkit-transition: opacity .35s ease-out .4s;
+	-moz-transition: opacity .35s ease-out .4s;
+	-ms-transition: opacity .35s ease-out .4s;
+	-o-transition: opacity .35s ease-out .4s;
+	transition: opacity .35s ease-out .4s;
+	opacity: 1;
+}
+/* If it's not the current card, we hide it */
+.card.next { visibility: hidden;}
+/* We hide the previous card */
+.card.previous {
+	-webkit-transition: opacity .24s ease-out;
+	-moz-transition: opacity .24s ease-out;
+	-ms-transition: opacity .24s ease-out;
+	-o-transition: opacity .24s ease-out;
+	transition: opacity .24s ease-out;
+	opacity: 0;
+}
+
+
+.cardDescription h1 {
+	color: #FFF;
+	font-family: 'Roboto';
+	font-size: 2em;
+	text-align: center;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 0;
+}
+
+.cardDescription h2 {
+	color: #FFF;
+	font-family: 'Roboto Light';
+	font-size: 1em;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.cardDescription p {
+	color: #FFF;
+	font-family: 'Roboto Light';
+	font-size: 0.9em;
+	margin: 16px 0;
+	padding: 0;
+	text-align: center;
+}
+
+#firstCard {
+	margin: 0;
+	opacity: 0;
+	padding: 0;
+	position: absolute;
+	bottom: 72px;
+	width: 100%;
+	-webkit-transition: opacity .375s ease-out;
+	transition: opacity .375s ease-out;
+}
+#firstCard.active { opacity: 1; }
+
+#intro-view { background-color: #E74C3C;}
+
+.next {
+	color: #FFF;
+	border: 1px solid #FFF;
+	display: block;
+	font-family: 'Roboto Light';
+	margin: 0 auto;
+	padding: 8px;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	width: 128px;
+}
+
+.view {
+	display: block;
+	height: 100%;
+	opacity: 0;
+	pointer-events: none; /* Any view is the target of mouse events (maybe children)*/
+	position: fixed;
+	top: 0;
+	width: 100%;	
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-transition: opacity .35s ease-out;
+	transition: opacity .35s ease-out;
+}
+.view.active{
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	pointer-events: auto;
+	opacity: 1;
+}

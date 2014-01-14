@@ -1,0 +1,16 @@
+CACHE MANIFEST
+#2014-01-14:v24
+
+# Explicity cached entries
+index.html
+css/fonts.css
+css/weight.css
+fonts/Roboto-Bold.ttf
+fonts/Roboto-Regular.ttf
+fonts/Roboto-Thin.ttf
+images/applogo.png
+images/icon.png
+
+# All other resources require the user to be offline.
+NETWORK:
+*
