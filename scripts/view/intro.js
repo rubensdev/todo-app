@@ -121,10 +121,10 @@ TA.View.Intro = function(elementID){
 		// Animate appLogo
 		setTimeout(function(){
 			appLogo.classList.add('active');
-		}, 2000);
+		}, 1000);
 		setTimeout(function(){
 			firstCard.classList.add('active');
-		}, 3000);
+		}, 1500);
 		//constructCard();
 	};
 
