@@ -1,5 +1,6 @@
-RubensDEV Todo App
+FLAT TODO List 
 ==================
 
-This is a kind of learning-by-dissect project which I'm working on. 
-The goal is an offline TODO's List webapp made with JavaScript.
+This is an offline webapp based on [Paul Lewis Weight Tracker webapp](https://github.com/paullewis/weight-tracker). 
+I've dissected the application and I can say that I've learned several things about Javascript and CSS3. 
+I have just the splashscreen of the app by now. If you want, you can take a look [here](https://rubensdev.com/todo-app).
