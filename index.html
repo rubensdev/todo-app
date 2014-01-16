@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html manifest="cache.manifest">
+<html><!-- manifest="cache.manifest" -->
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta charset="utf-8" />
 		<meta name="description" content=""> 
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="mobile-web-app-capable" content="yes" />
 		<link rel="apple-touch-icon" href="img/icon.png" />
@@ -13,8 +13,8 @@
 		<link rel="stylesheet" href="css/todoapp.css" />
 		<title>RubensDEV Todo App</title>
 	</head>
-	<body>
-		<section class="wrapper">
+	<body class="loading">
+		<section class="page">
 			<section id="intro-view" class="view">
 				<div class="card">
 					<img id="appLogo" src="img/applogo.png" />
@@ -28,27 +28,49 @@
 				<div class="card">
 					<div id="secondCard" class="cardDescription">
 						<h2>This is only a demo!</h2>
-						<p>This demo ends here. I'm working hard to give you the best user experience
-                  I can.</p>
+						<p>This demo ends here. I'm working hard to give you the best user 
+                  experience I can.</p>
 						<a class="next" href="#">Ok,I got it</a>
 					</div>
 				</div> 
 			</section>
+			<section id="main-view" class="view">
+				<header>
+					<div class="wrapper">
+						<img id="settingsButton" src="img/settingsButton.png" /> 
+					</div>
+				</header>
+					<div class="wrapper">
+						<div id="tasks">
+							<div class="noTasks">
+								<h2>Oops!</h2>
+								<p>It seems you don't have any task to do.It is impossible!</p>
+								<span>Tap the screen to add one.</span>
+							</div>
+						</div>
+					</div>
+				<!--<input type="text" placeholder="Insert something here" />
+				<canvas data-type="dial" data-max="3000" 
+               data-color="FLAT_RED" data-track-color="false" data-label="year" data-decimal-places="0" 
+               data-ratio="1.5" id="tickerExample"></script> -->
+			</section>
 		</section>
-		<!-- TweenJS-->
-		<!-- <script src="libs/RequestAnimationFrame.js"></script>
-		<script src="libs/tween.min.js"></script> -->
-
+		
+		<script src="libs/raf.js"></script>
 		<script type="text/javascript" src="scripts/misc/namespace.js"></script>
 		<script type="text/javascript" src="scripts/misc/colors.js"></script>
 		<!-- View Scripts -->
 		<script type="text/javascript" src="scripts/view/base.js"></script>
+		<script type="text/javascript" src="scripts/view/dial.js"></script>
+		<script type="text/javascript" src="scripts/view/dialentry.js"></script>
 		<script type="text/javascript" src="scripts/view/intro.js"></script>
+		<script type="text/javascript" src="scripts/view/main.js"></script>
 		<!-- App -->
 		<script type="text/javascript" src="scripts/app.js"></script>
 		<!-- Controller Scripts -->
 		<script type="text/javascript" src="scripts/controller/base.js"></script> 
 		<script type="text/javascript" src="scripts/controller/intro.js"></script>
+		<script type="text/javascript" src="scripts/controller/main.js"></script>
 		<!-- Bootstrap -->
 		<script type="text/javascript" src="scripts/misc/bootstrap.js"></script>
 	</body>

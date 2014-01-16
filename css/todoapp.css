@@ -4,18 +4,13 @@
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-#appLogo {
-	max-width: 384px;
-	display: block;
-	margin: 0 auto;
-	padding: 0;
-	-webkit-transition: -webkit-transform .875s ease-out;
-	-webkit-transform: TranslateY(-512px) rotate(0deg);
-	transform: TranslateY(-512px) rotate(0deg);
-}
-#appLogo.active { 
-	-webkit-transform: TranslateY(0px) rotate(360deg); 
-	transform: TranslateY(0px) rotate(360deg);
+@-webkit-keyframes pencil {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	50% {
+		-webkit-transform: rotate(360deg);
+	}
 }
 
 html, body {
@@ -26,6 +21,21 @@ html, body {
 	min-width: 320px;
 	padding: 0;
 	width: 100%;
+}
+
+#appLogo {
+	max-width: 384px;
+	display: block;
+	margin: 0 auto;
+	padding: 0;
+	-webkit-transition: -webkit-transform .875s ease-out;
+	-webkit-transform: TranslateY(-512px) rotate(0deg);
+	transform: TranslateY(-512px) rotate(0deg);
+}
+
+#appLogo.active { 
+	-webkit-transform: TranslateY(0px) rotate(360deg); 
+	transform: TranslateY(0px) rotate(360deg);
 }
 
 .card {
@@ -92,8 +102,27 @@ html, body {
 }
 #firstCard.active { opacity: 1; }
 
+header {
+	background-color: #E74C3C;
+	height: 72px;
+	position: relative;
+	width: 100%;
+}
+
 img { margin: 0; padding: 0;}
 #intro-view { background-color: #E74C3C;}
+
+.loading {
+	background: url('../img/loading.png') center 40% no-repeat;
+	background-size: 128px 128px;	
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	-webkit-animation: pencil 1s infinite;
+	animation: pencil 1s infinite;
+}
+
+#main-view { background-color: #DFE2E3;} 
 
 .next {
 	color: #FFF;
@@ -108,6 +137,22 @@ img { margin: 0; padding: 0;}
 	width: 128px;
 }
 
+.noTasks {
+	bottom: 0;
+	color: #333;
+	font-family: 'Roboto';
+	left: 0;
+	margin: auto;
+	position: absolute; 
+	right: 0;
+	text-align: center;
+	top: 0;
+	height: 92px;
+}
+
+.noTasks h2 { font-size: 1.7em; }
+.noTasks span { color: #777; font-size: 0.95em; }
+
 #secondCard {
 	bottom: 0;
 	left: 0;
@@ -119,6 +164,7 @@ img { margin: 0; padding: 0;}
 }
 
 #secondCard h2 { font-size: 1.5em; }
+#settingsButton { display: block; padding: 6px;}
 
 .view {
 	display: block;
@@ -143,6 +189,11 @@ img { margin: 0; padding: 0;}
 	transform: translateZ(0);
 	pointer-events: auto;
 	opacity: 1;
+}
+
+.wrapper {
+	margin: 0 auto;	
+	max-width: 960px;
 }
 
 @media screen and (max-width: 361px) {

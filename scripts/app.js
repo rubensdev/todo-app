@@ -7,6 +7,10 @@ TA.App = (function() {
 		, callbacks = {
 			onIntroComplete : function(){
 				introController.hide();
+				setTimeout(function(){
+					mainController.show();
+					// TODO: Implementing a firstRun flag (Settings stuffs)
+				},200);
 			}
 		};
 
@@ -27,9 +31,13 @@ TA.App = (function() {
 		document.body.classList.remove('loading');
 		addEventListeners();
 		// Controller Initialization
-		introController = new TA.Controller.Intro();
-		introController.init();
-		introController.show();
+		//introController = new TA.Controller.Intro();
+		//introController.init();
+		//introController.show();
+		// Main Controller
+		mainController = new TA.Controller.Main();
+		mainController.init();
+		mainController.show();
 	}
 
 	return {
