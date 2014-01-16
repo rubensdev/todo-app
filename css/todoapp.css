@@ -23,6 +23,29 @@ html, body {
 	width: 100%;
 }
 
+#addTaskDialog {
+	background-color: #F00;
+	-webkit-transition: all .375s ease-out;
+	transition: all .375s ease-out;
+	opacity: 0;
+	visibility: hidden;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+#addTaskDialog.show {
+	-webkit-transition: all .375s ease-out;
+	transition: all .375s ease-out;
+	opacity: 1;
+	visibility: visible;
+}
+#addTaskDialog.hide {
+	-webkit-transition: all .375s ease-out;
+	transition: all .375s ease-out;
+	opacity: 0;
+	visibility: hidden;
+}
+
 #appLogo {
 	max-width: 384px;
 	display: block;
@@ -137,7 +160,7 @@ img { margin: 0; padding: 0;}
 	width: 128px;
 }
 
-.noTasks {
+#noTasksMsg {
 	bottom: 0;
 	color: #333;
 	font-family: 'Roboto';
@@ -148,10 +171,15 @@ img { margin: 0; padding: 0;}
 	text-align: center;
 	top: 0;
 	height: 92px;
+	-webkit-transition: opacity .375s ease-out;
+	transition: opacity .375s ease-out;
+}
+#noTasksMsg.hide {
+	opacity: 0;
 }
 
-.noTasks h2 { font-size: 1.7em; }
-.noTasks span { color: #777; font-size: 0.95em; }
+#noTasksMsg h2 { font-size: 1.7em; }
+#noTasksMsg span { color: #777; font-size: 0.95em; }
 
 #secondCard {
 	bottom: 0;
@@ -165,6 +193,12 @@ img { margin: 0; padding: 0;}
 
 #secondCard h2 { font-size: 1.5em; }
 #settingsButton { display: block; padding: 6px;}
+
+#tasks {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
 
 .view {
 	display: block;
@@ -192,7 +226,9 @@ img { margin: 0; padding: 0;}
 }
 
 .wrapper {
+	height: 100%;
 	margin: 0 auto;	
+	position: relative;
 	max-width: 960px;
 }
 

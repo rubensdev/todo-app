@@ -4,7 +4,17 @@
 TA.View.Main = function(elementID) {
 
 	var  element = document.getElementById(elementID)
+		, addTaskDialog = document.getElementById('addTaskDialog')
+		, tasks = document.getElementById('tasks')
+		, noTasksMsg = document.getElementById('noTasksMsg')
 		, currentDialControl = null;
+
+	function addEventListeners(){
+		noTasksMsg.addEventListener('click', onTasksClick, false);
+		noTasksMsg.addEventListener('touchend', onTasksClick, false);
+		tasks.addEventListener('click', onTasksClick, false);
+		tasks.addEventListener('touchend', onTasksClick, false);	
+	}
 
 	function constructDial(){
 		var canvas = element.querySelector('canvas');
@@ -44,8 +54,28 @@ TA.View.Main = function(elementID) {
 		currentDialControl = null;
 	}
 
+	function onTasksClick(evt) {
+		evt.preventDefault();
+		if (noTasksMsg.style.display !== 'none'){
+			noTasksMsg.classList.add('hide');
+			setTimeout(function(){
+				addTaskDialog.classList.add('show');	
+			},875);
+		} else {
+			noTasksMsg.classList.remove('hide');
+		}
+	}
+
+	function removeEventListeners(){
+		noTasksMsg.removeEventListener('click', onTasksClick, false);
+		noTasksMsg.removeEventListener('touchend', onTasksClick, false);
+		tasks.removeEventListener('click', onTasksClick, false);
+		tasks.removeEventListener('touchend', onTasksClick, false);	
+	}
+
 	this.show = function(){
 		element.classList.add('active');
+		addEventListeners();
 		constructDial();
 	}
 
