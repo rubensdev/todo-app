@@ -3,9 +3,11 @@
  *	and passes the appropiate values to the dial.
  */
 
-TA.View.DialEntry = function(elementID) {
+TA.View.DialEntry = function(elementID, w, h) {
 	
-	var  dial = new TA.View.Dial(elementID)
+	var  HALF_WIDTH = w * 0.5
+		, HALF_HEIGHT = h * 0.5
+		, dial = new TA.View.Dial(elementID, w, h)
 		, dialElement = document.getElementById(elementID)
 		, dialElementX = dialElement.offsetLeft
 		, dialElementY = dialElement.offsetTop
@@ -98,8 +100,8 @@ TA.View.DialEntry = function(elementID) {
 			}
 
 			// Calculates the difference between a coordinate (x,y) and the center of the circle.
-			var  xDiff = x - 126
-				, yDiff = y - 126;
+			var  xDiff = x - HALF_WIDTH
+				, yDiff = y - HALF_HEIGHT;
 
 			// We get the angle of a straight line between two points in radians. 
 			return Math.atan2(yDiff, xDiff) + Math.PI * 2.5; 

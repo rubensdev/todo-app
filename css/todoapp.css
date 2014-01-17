@@ -23,12 +23,16 @@ html, body {
 	width: 100%;
 }
 
+#addButton { background-color: #E74C3C; border-bottom: 3px solid #C0392B;}
+#addCancelField { padding: 8px; text-align: center;}
+
 #addTaskDialog {
-	background-color: #F00;
+	/*background-color: #F00;*/
 	-webkit-transition: all .375s ease-out;
 	transition: all .375s ease-out;
-	opacity: 0;
-	visibility: hidden;
+	opacity: 1;
+	/*visibility: hidden;*/
+	padding: 8px;
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -46,6 +50,19 @@ html, body {
 	visibility: hidden;
 }
 
+#addTaskDialog h2 {
+	color: #E74C3C;
+	font-family: 'Roboto Light';
+}
+
+#addTaskDialog textarea {
+	border: 2px solid #999;
+	font-family: 'Roboto Light';
+	height: 96px;
+	resize: none;
+	width: 100%;
+}
+
 #appLogo {
 	max-width: 384px;
 	display: block;
@@ -60,6 +77,18 @@ html, body {
 	-webkit-transform: TranslateY(0px) rotate(360deg); 
 	transform: TranslateY(0px) rotate(360deg);
 }
+
+.button {
+	color: #FFF;
+	display: block;
+	font-family: 'Roboto';
+	padding: 8px;
+	text-align: center;
+	text-decoration: none;
+	width: 128px;
+}
+
+#cancelButton { background-color: #95A5A6; border-bottom: 3px solid #7F8C8D;}
 
 .card {
 	background-color: #E74C3C; 
@@ -173,6 +202,8 @@ img { margin: 0; padding: 0;}
 	height: 92px;
 	-webkit-transition: opacity .375s ease-out;
 	transition: opacity .375s ease-out;
+	/* For now */
+	opacity: 0;
 }
 #noTasksMsg.hide {
 	opacity: 0;
@@ -192,13 +223,16 @@ img { margin: 0; padding: 0;}
 }
 
 #secondCard h2 { font-size: 1.5em; }
-#settingsButton { display: block; padding: 6px;}
+#settingsButton { display: block; height: 100%; padding: 4px;}
 
 #tasks {
 	position: absolute;
 	height: 100%;
 	width: 100%;
 }
+
+ul { display: inline-block; list-style: none; margin: 0; padding: 0;}
+ul li { display: inline-block; margin-left: 16px;}
 
 .view {
 	display: block;
@@ -234,6 +268,7 @@ img { margin: 0; padding: 0;}
 
 @media screen and (max-width: 361px) {
 	#appLogo { max-width: 256px;}
+	header { height: 48px; }
 	/*.card { background-color: #00F;}	*/
 	#secondCard { padding: 0 32px 0 32px; }
 }
@@ -248,3 +283,7 @@ img { margin: 0; padding: 0;}
 	#appLogo { max-width: 384px; }
  	/*.card { background-color: #0FF;}*/
 }
+
+/*** TESTING ***/
+canvas { background-color : #000;}
+#monthDial { width: 96px; height: 96px;}

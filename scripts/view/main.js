@@ -18,6 +18,8 @@ TA.View.Main = function(elementID) {
 
 	function constructDial(){
 		var canvas = element.querySelector('canvas');
+		
+		console.log(canvas);
 
 		if(!!canvas) {
 			switch(canvas.dataset.type) {
@@ -28,7 +30,7 @@ TA.View.Main = function(elementID) {
 						, label = canvas.dataset.label
 						, color = canvas.dataset.color;
 
-				  	currentDialControl = new TA.View.DialEntry(canvas.getAttribute('id'));
+				  	currentDialControl = new TA.View.DialEntry(canvas.getAttribute('id'),96,96);
 					currentDialControl.show();
 					currentDialControl.setup({
 						max: max,

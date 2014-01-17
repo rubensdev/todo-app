@@ -2,12 +2,12 @@
  * Represents the dial component.
  */
 
-TA.View.Dial = function(elementID) {
+TA.View.Dial = function(elementID, w, h) {
 	
-	var  WIDTH = 258 // Width of the canvas element
-		, HEIGHT = 258 // Height of the canvas element
-		, HALF_WIDTH = WIDTH * 0.5 
-		, HALF_HEIGHT = HEIGHT * 0.5
+	var  WIDTH = null // Width of the canvas element 
+		, HEIGHT = null // Height of the canvas element
+		, HALF_WIDTH = null
+		, HALF_HEIGHT = null
 		, TWO_PI = Math.PI * 2
 		, QUARTER_PI = Math.PI * 0.5
 		, PADDING = 1000;
@@ -33,7 +33,11 @@ TA.View.Dial = function(elementID) {
         - Android and Windows Phone devices, divide screen.width by 
           devicePixelRatio to get the dips count.*/
 		var dPR = window.devicePixelRatio;
-	
+		WIDTH = w !== undefined ? w : 258;
+		HEIGHT = h !== undefined ? h : 258;
+		HALF_WIDTH = WIDTH * 0.5;
+		HALF_HEIGHT = HEIGHT * 0.5;
+		
 		canvas.width = WIDTH * dPR;
 		canvas.height = HEIGHT * dPR;
 		ctx.scale(dPR, dPR);	
@@ -87,7 +91,7 @@ TA.View.Dial = function(elementID) {
 	function drawCenter() {
 		ctx.fillStyle = TA.Colors.WHITE;
 		ctx.beginPath();
-		ctx.arc(HALF_WIDTH, HALF_HEIGHT, 81, 0, TWO_PI, true);
+		ctx.arc(HALF_WIDTH, HALF_HEIGHT, HALF_WIDTH / 1.5, 0, TWO_PI, true);
 		ctx.closePath();
 		ctx.fill();
 	}
@@ -125,16 +129,16 @@ TA.View.Dial = function(elementID) {
 
 	function drawText() {
 		ctx.fillStyle = drawColor;
-		ctx.font = "56px Roboto Light";
+		ctx.font = "20px Roboto";
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 		ctx.fillText(userValue.toFixed(decimalPlaces),HALF_WIDTH,
-			HALF_HEIGHT - 10);
-		ctx.fillStyle = TA.Colors.MEDIUM_GRAY;
+			HALF_HEIGHT); // - 10
+		/*ctx.fillStyle = TA.Colors.MEDIUM_GRAY;
 		ctx.font = "16px Roboto";
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
-		ctx.fillText(label, HALF_WIDTH, HALF_HEIGHT + 26);
+		ctx.fillText(label, HALF_WIDTH, HALF_HEIGHT + 26);*/
 	}
 
 	function getValue() {

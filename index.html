@@ -42,30 +42,47 @@
 				</header>
 					<div class="wrapper">
 						<div id="tasks">
-						</div>
-						<div id="noTasksMsg">
-							<h2>Oops!</h2>
-							<p>It seems you don't have any task to do.It is impossible!</p>
-							<span>Tap the screen to add one.</span>
+							<div id="noTasksMsg">
+								<h2>Oops!</h2>
+								<p>It seems you don't have any task to do.It is impossible!</p>
+								<span>Tap the screen to add one.</span>
+							</div>
 						</div>
 						<div id="addTaskDialog">
-							<textarea></textarea>
+							<textarea placeholder="I'm going to do..."></textarea>
 							<div id="dateField">
 								<h2>Date</h2>
+								<ul>
+									<li><canvas data-type="dial" data-max="12" data-color="FLAT_RED" 
+									data-track-color="false" data-label="year" data-ratio="1.5" 
+									id="monthDial"></canvas></li>
+									<li><canvas data-type="dial" data-max="31" data-color="FLAT_RED" 
+									data-track-color="false" data-label="year" data-decimal-places="0" 
+									data-ratio="1.5" id="dayDial"></canvas></li>
+									<li><canvas data-type="dial" data-max="9999" data-color="FLAT_RED" 
+									data-track-color="false" data-label="year" data-decimal-places="0" 
+									data-ratio="1.5" id="yearDial"></canvas></li>
+								</ul>
 							</div>
 							<div id="timeField">
 								<h2>Time</h2>
+								<ul>
+									<li><canvas data-type="dial" data-max="23" data-color="FLAT_RED" 
+									data-track-color="false" data-label="year" data-ratio="1.5" 
+									id="hourDial"></canvas></li>
+									<li><canvas data-type="dial" data-max="59" data-color="FLAT_RED" 
+									data-track-color="false" data-label="year" data-decimal-places="0" 
+									data-ratio="1.5" id="minutesDial"></canvas></li>
+								</ul>
 							</div>
 							<div id="addCancelField">
-								<a id="cancelButton" class="button" href="#">CANCEL</a>
-								<a id="addButton" class="button" href="#">ADD</a>
+								<ul>
+									<li><a id="cancelButton" class="button" href="#">CANCEL</a></li>
+									<li><a id="addButton" class="button" href="#">ADD</a></li>
+								</ul>
 							</div>
 						</div>
 					</div>
-				<!--<input type="text" placeholder="Insert something here" />
-				<canvas data-type="dial" data-max="3000" 
-               data-color="FLAT_RED" data-track-color="false" data-label="year" data-decimal-places="0" 
-               data-ratio="1.5" id="tickerExample"></script> -->
 			</section>
 		</section>
 		
