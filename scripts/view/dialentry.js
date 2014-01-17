@@ -144,6 +144,7 @@ TA.View.DialEntry = function(elementID, w, h) {
 		this.setup = function(options) {
 			var  rawValue = options.value
 				, value = options.value
+				, min = options.min
 				, max = options.max
 				, label = options.label
 				, color = options.color
@@ -154,6 +155,7 @@ TA.View.DialEntry = function(elementID, w, h) {
 
 			dial.setDecimalPlaces(decimalPlaces);
 			dial.setRatio(ratio);
+			dial.setMin(min);
 			dial.setMax(max);
 			dial.setLabel(label);
 			dial.setDrawColor(color);

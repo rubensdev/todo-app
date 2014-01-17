@@ -23,6 +23,7 @@ TA.View.Dial = function(elementID, w, h) {
 		, easeValue = 0.35
 		, currentAngle = 1
 		, userValue = 0
+		, minValue = 0
 		, maxValue = 140
 		, ratio = 5
 		, label = "";
@@ -118,7 +119,7 @@ TA.View.Dial = function(elementID, w, h) {
 	function drawGrayBase() {
 		var radius = HALF_WIDTH - 2;
 		
-		ctx.fillStyle = TA.Colors.LIGHT_GRAY;
+		ctx.fillStyle = TA.Colors.MEDIUM_GRAY;
 		ctx.beginPath();
 		ctx.moveTo(HALF_WIDTH, HALF_HEIGHT);
 		//ctx.lineTo(WIDTH, HALF_HEIGHT);
@@ -155,6 +156,10 @@ TA.View.Dial = function(elementID, w, h) {
 
 	function setRatio(newRatio) {
 		ratio = newRatio;
+	}
+
+	function setMin(newMinValue) {
+		minValue = newMinValue;
 	}
 	
 	function setMax(newMaxValue) {
@@ -208,7 +213,10 @@ TA.View.Dial = function(elementID, w, h) {
 		drawTargetEnd = currentAngle + 0.05;
 
 		// Constrain the values to something sensible.
-		userValue = Math.max(userValue, 0);
+		//userValue = Math.max(userValue, minValue);
+		console.log(minValue);
+		userValue = userValue > maxValue ? maxValue : userValue;
+		userValue = userValue < minValue ? minValue : userValue; //Math.max(userValue, minValue);
 		currentAngle = Math.max(currentAngle, 0.75);
 		drawTargetStart = Math.max(drawTargetStart, 0.75);
 		drawTargetEnd = Math.max(drawTargetEnd, 0.75);
@@ -227,6 +235,7 @@ TA.View.Dial = function(elementID, w, h) {
 		animateTo: animateTo,
 		setDecimalPlaces: setDecimalPlaces,
 		setRatio: setRatio,
+		setMin: setMin,
 		setMax: setMax,
 		setLabel: setLabel,
 		setDrawColor: setDrawColor,

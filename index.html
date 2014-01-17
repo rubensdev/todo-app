@@ -50,30 +50,31 @@
 						</div>
 						<div id="addTaskDialog">
 							<textarea placeholder="I'm going to do..."></textarea>
-							<div id="dateField">
-								<h2>Date</h2>
-								<ul>
-									<li><canvas data-type="dial" data-max="12" data-color="FLAT_RED" 
-									data-track-color="false" data-label="year" data-ratio="1.5" 
-									id="monthDial"></canvas></li>
-									<li><canvas data-type="dial" data-max="31" data-color="FLAT_RED" 
-									data-track-color="false" data-label="year" data-decimal-places="0" 
-									data-ratio="1.5" id="dayDial"></canvas></li>
-									<li><canvas data-type="dial" data-max="9999" data-color="FLAT_RED" 
-									data-track-color="false" data-label="year" data-decimal-places="0" 
-									data-ratio="1.5" id="yearDial"></canvas></li>
-								</ul>
-							</div>
-							<div id="timeField">
-								<h2>Time</h2>
-								<ul>
-									<li><canvas data-type="dial" data-max="23" data-color="FLAT_RED" 
-									data-track-color="false" data-label="year" data-ratio="1.5" 
-									id="hourDial"></canvas></li>
-									<li><canvas data-type="dial" data-max="59" data-color="FLAT_RED" 
-									data-track-color="false" data-label="year" data-decimal-places="0" 
-									data-ratio="1.5" id="minutesDial"></canvas></li>
-								</ul>
+							<div id="dateNTimeWrapper">
+								<div id="dateField" class="field">
+									<h2>Date</h2>
+									<ul>
+										<li>
+											<canvas data-type="dial" data-ratio="5" id="monthDial"></canvas>
+											<p> Month </p>
+										</li>
+										<li>
+											<canvas data-type="dial" data-ratio="10" id="dayDial"></canvas>
+											<p> Day </p>
+										</li>
+										<li>
+											<canvas data-type="dial" data-ratio="10" id="yearDial"></canvas>
+											<p> Year </p>
+										</li>
+									</ul>
+								</div>
+								<div id="timeField" class="field">
+									<h2>Time</h2>
+									<ul>
+										<li><canvas data-ratio="1.5" id="hourDial"></canvas><p>Hour</p></li>
+										<li><canvas data-ratio="1.5" id="minutesDial"></canvas><p>Minutes</p></li>
+									</ul>
+								</div>
 							</div>
 							<div id="addCancelField">
 								<ul>
@@ -82,7 +83,6 @@
 								</ul>
 							</div>
 						</div>
-					</div>
 			</section>
 		</section>
 		

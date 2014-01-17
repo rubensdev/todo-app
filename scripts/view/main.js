@@ -2,12 +2,35 @@
  * Represents the main view
  */
 TA.View.Main = function(elementID) {
+	// TODO: Identify the cancel & add buttons. 
+	// TODO: Add event listeners to cancel & add buttons.
+   // TODO: When cancel is pressed, the addTaskDialog should dissapear
+	// 		and we must check if there is any task available in local 
+	// 		storage. If not, the noTasksMsg should appear.
+	// TODO: When add is pressed, we must retrieve values from textarea,
+   //       month,day,year,hour and minutes fields and store into local
+ 	//       storage as a task.
+	// TODO: If any task is clicked (or touched), the addTaskDialog should
+	// 		appear again but with an edit mode. In this mode you can
+	//			update the task or erase it.
+	//	TODO: Change Add to Edit button in 'edit mode' and add a Erase button.
+
 
 	var  element = document.getElementById(elementID)
 		, addTaskDialog = document.getElementById('addTaskDialog')
+		, dateField = document.getElementById('dateField')
+		, timeField = document.getElementById('timeField')
 		, tasks = document.getElementById('tasks')
 		, noTasksMsg = document.getElementById('noTasksMsg')
-		, currentDialControl = null;
+		, dateDialControls = []
+		, timeDialControls = []
+		, date = new Date()
+		, monthDayYear = [date.getMonth() + 1, date.getDate(), date.getFullYear()]
+		, hourmin = [date.getHours(), date.getMinutes()]
+		, minDateValues = [1,1, date.getFullYear()]
+		, maxDateValues = [12,31,date.getFullYear() + 10]
+		, minTimeValues = [0,0]
+		, maxTimeValues = [23,59]
 
 	function addEventListeners(){
 		noTasksMsg.addEventListener('click', onTasksClick, false);
@@ -16,44 +39,61 @@ TA.View.Main = function(elementID) {
 		tasks.addEventListener('touchend', onTasksClick, false);	
 	}
 
-	function constructDial(){
-		var canvas = element.querySelector('canvas');
+	function constructDials(){
+		var  dateDials = dateField.getElementsByTagName('canvas')
+			, timeDials = timeField.getElementsByTagName('canvas');
 		
-		console.log(canvas);
-
-		if(!!canvas) {
-			switch(canvas.dataset.type) {
-				case "dial":
-					var  max = parseFloat(canvas.dataset.max)
-						, value = 2014 //TA.App.getValue(canvas.dataset.label)
-						, ratio = parseFloat(canvas.dataset.ratio)
-						, label = canvas.dataset.label
-						, color = canvas.dataset.color;
-
-				  	currentDialControl = new TA.View.DialEntry(canvas.getAttribute('id'),96,96);
-					currentDialControl.show();
-					currentDialControl.setup({
-						max: max,
-						value: value,
-						label: label, //TA.App.getFullLabel(label),
-						color: TA.Colors[color],
-						eventName : canvas.dataset.eventComplete,
-						trackColor: (canvas.dataset.trackColor === "true"),
-						decimalPlaces: 0, //TA.App.getDecimalPlaces(label),
-						ratio: ratio
-					});
-				break;
-				default: break;
-			}
+		for (var i = 0; i < dateDials.length; i++){
+			var attrName = dateDials[i].getAttribute('id');
+			dateDialControls[i] = new TA.View.DialEntry(attrName, 96,96);
+			dateDialControls[i].show();
+			dateDialControls[i].setup({
+				min : minDateValues[i],
+				max : maxDateValues[i],
+				value : monthDayYear[i],
+				label : '',
+				color : TA.Colors["FLAT_RED"],
+				eventName : dateDials[i].dataset.eventComplete,
+				trackColor : (dateDials[i].dataset.trackColor === "true"),
+				decimalPlaces: 0,
+				ratio : dateDials[i].dataset.ratio
+			});	
 		}
+
+		for (var i = 0; i < timeDials.length; i++){
+			var attrName = timeDials[i].getAttribute('id');
+			timeDialControls[i] = new TA.View.DialEntry(attrName, 96,96);
+			timeDialControls[i].show();
+			timeDialControls[i].setup({
+				min : minTimeValues[i],
+				max : maxTimeValues[i],
+				value : hourmin[i],
+				label : '',
+				color : TA.Colors["FLAT_RED"],
+				eventName : null,
+				trackColor: false,
+				decimalPlaces : 0,
+				ratio : timeDials[i].dataset.ratio
+			});
+		}
+
 	}
 
 	function destructCard() {
-		if (currentDialControl &&
-			typeof currentDialControl.hideAndDispatch === "function") {
-			currentDialControl.hideAndDispatch();
+		for (var i = 0; i < dateDialControls.length; i++){
+			if (dateDialControls[i] &&
+				typeof dateDialControls[i].hideAndDispatch === "function") {
+				dateDialControls[i].hideAndDispatch();
+			}
 		}
-		currentDialControl = null;
+		for (var i = 0; i < timeDialControls.length; i++){
+			if (timeDialControls[i] &&
+				typeof timeDialControls[i].hideAndDispatch === "function") {
+				timeDialControls[i].hideAndDispatch();
+			}
+		}
+		dateDialControls = null;
+		timeDialControls = null;
 	}
 
 	function onTasksClick(evt) {
@@ -78,7 +118,7 @@ TA.View.Main = function(elementID) {
 	this.show = function(){
 		element.classList.add('active');
 		addEventListeners();
-		constructDial();
+		constructDials();
 	}
 
 	this.hide = function(){

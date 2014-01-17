@@ -5,12 +5,8 @@
 }
 
 @-webkit-keyframes pencil {
-	0% {
-		-webkit-transform: rotate(0deg);
-	}
-	50% {
-		-webkit-transform: rotate(360deg);
-	}
+	0% { -webkit-transform: rotate(0deg);	}
+	50% { -webkit-transform: rotate(360deg);	}
 }
 
 html, body {
@@ -147,11 +143,13 @@ html, body {
 	text-align: center;
 }
 
-#firstCard {
-	opacity: 0;
-	-webkit-transition: opacity .375s ease-out;
-	transition: opacity .375s ease-out;
-}
+#dateNTimeWrapper { height: 55%; overflow-y: auto;}
+
+.field { text-align: center;}
+.field p { color: #E74C3C; font-family: 'Roboto'; margin: 0; padding: 0; }
+
+
+#firstCard { opacity: 0; -webkit-transition: opacity .375s ease-out;	transition: opacity .375s ease-out;}
 #firstCard.active { opacity: 1; }
 
 header {
@@ -271,6 +269,7 @@ ul li { display: inline-block; margin-left: 16px;}
 	header { height: 48px; }
 	/*.card { background-color: #00F;}	*/
 	#secondCard { padding: 0 32px 0 32px; }
+	ul li { margin-left: 4px; }
 }
 
 @media screen and (min-width: 361px) and (max-width: 602px) {
@@ -285,5 +284,3 @@ ul li { display: inline-block; margin-left: 16px;}
 }
 
 /*** TESTING ***/
-canvas { background-color : #000;}
-#monthDial { width: 96px; height: 96px;}
