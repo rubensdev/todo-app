@@ -19,41 +19,42 @@ html, body {
 	width: 100%;
 }
 
-#addButton { background-color: #E74C3C; border-bottom: 3px solid #C0392B;}
-#addCancelField { padding: 8px; text-align: center;}
+.activities { 
+	position: absolute; 
+	top: 72px; 
+	right: 0; 
+	left: 0; 
+	bottom: 0;
+}
 
-#addTaskDialog {
-	/*background-color: #F00;*/
+.activity {
+	background-color: #DFE2E3;
 	-webkit-transition: all .375s ease-out;
 	transition: all .375s ease-out;
 	opacity: 1;
-	/*visibility: hidden;*/
+	position: relative;
+	width: 100%;
+}
+
+.activity.show { opacity: 1;}
+.activity.hide { opacity: 0;}
+
+#addButton { background-color: #E74C3C; border-bottom: 3px solid #C0392B;}
+#addCancelField { padding: 8px; text-align: center;}
+
+#addTaskActivity {
+	box-sizing: border-box;
 	padding: 8px;
 	position: absolute;
 	width: 100%;
 	height: 100%;
-}
-#addTaskDialog.show {
-	-webkit-transition: all .375s ease-out;
-	transition: all .375s ease-out;
-	opacity: 1;
-	visibility: visible;
-}
-#addTaskDialog.hide {
-	-webkit-transition: all .375s ease-out;
-	transition: all .375s ease-out;
-	opacity: 0;
-	visibility: hidden;
+	z-index: 9998;
 }
 
-#addTaskDialog h2 {
-	color: #E74C3C;
-	font-family: 'Roboto Light';
-}
-
-#addTaskDialog textarea {
+#addTaskActivity h2 { color: #E74C3C;	font-family: 'Droid Sans';}
+#addTaskActivity textarea {
 	border: 2px solid #999;
-	font-family: 'Roboto Light';
+	font-family: 'Droid Sans';
 	height: 96px;
 	resize: none;
 	width: 100%;
@@ -68,21 +69,20 @@ html, body {
 	-webkit-transform: TranslateY(-512px) rotate(0deg);
 	transform: TranslateY(-512px) rotate(0deg);
 }
-
-#appLogo.active { 
-	-webkit-transform: TranslateY(0px) rotate(360deg); 
-	transform: TranslateY(0px) rotate(360deg);
-}
+#appLogo.active { -webkit-transform: TranslateY(0px) rotate(360deg); transform: TranslateY(0px) rotate(360deg);}
 
 .button {
 	color: #FFF;
 	display: block;
-	font-family: 'Roboto';
+	font-family: 'Droid Sans';
 	padding: 8px;
 	text-align: center;
 	text-decoration: none;
 	width: 128px;
 }
+
+.buttonView { height: 20%;}
+.buttonView #addButton { margin: 0 auto; position: relative; top: 50%; -webkit-transform: translateY(-50%);}
 
 #cancelButton { background-color: #95A5A6; border-bottom: 3px solid #7F8C8D;}
 
@@ -117,7 +117,7 @@ html, body {
 
 .cardDescription h1 {
 	color: #FFF;
-	font-family: 'Roboto';
+	font-family: 'Droid Sans';
 	font-size: 2em;
 	text-align: center;
 	text-transform: uppercase;
@@ -143,6 +143,42 @@ html, body {
 	text-align: center;
 }
 
+.dateField { 
+	background-color: #e74c3c; 
+	color: #FFF;
+	font-family: 'Roboto';
+	padding: 8px;
+	position: absolute; 
+	text-align: left;
+	height: 100%; 
+	width: 80px; 
+	top: 0; 
+	left: 0; 
+	bottom: 0;
+}
+.dateDayMonth { 
+	float: left;
+	font-family: 'Roboto'; 
+	font-size: 1.5em; 
+	line-height: 0.9em;
+	text-align: center;
+	width: 80%;
+}
+.dateTime {
+	display: inline-block;
+	font-family: 'Roboto';
+	font-size: 0.85em;
+	text-align: center;
+	width: 100%;
+}
+.dateYear {
+	word-wrap : break-word;
+	font-size: 0.7em;
+	float: right;
+	line-height: 10px;
+	text-align: center;
+	width: 8px;
+}
 #dateNTimeWrapper { height: 55%; overflow-y: auto;}
 
 .field { text-align: center;}
@@ -187,28 +223,16 @@ img { margin: 0; padding: 0;}
 	width: 128px;
 }
 
-#noTasksMsg {
-	bottom: 0;
+#noTasksActivity {
 	color: #333;
 	font-family: 'Roboto';
-	left: 0;
-	margin: auto;
-	position: absolute; 
-	right: 0;
 	text-align: center;
-	top: 0;
-	height: 92px;
-	-webkit-transition: opacity .375s ease-out;
-	transition: opacity .375s ease-out;
-	/* For now */
-	opacity: 0;
+	height: 100%;
+	z-index: 9999;
 }
-#noTasksMsg.hide {
-	opacity: 0;
-}
-
-#noTasksMsg h2 { font-size: 1.7em; }
-#noTasksMsg span { color: #777; font-size: 0.95em; }
+#noTasksActivity .message { position: relative; top: 50%; -webkit-transform: translateY(-50%);}
+#noTasksActivity h2 { font-size: 1.7em; margin: 0; padding: 0;}
+#noTasksActivity span { color: #777; font-size: 0.95em; }
 
 #secondCard {
 	bottom: 0;
@@ -223,11 +247,20 @@ img { margin: 0; padding: 0;}
 #secondCard h2 { font-size: 1.5em; }
 #settingsButton { display: block; height: 100%; padding: 4px;}
 
-#tasks {
-	position: absolute;
-	height: 100%;
-	width: 100%;
+#tasks { height: 100%; position: absolute; width: 100%;}
+#tasksActivity { height: 100%;}
+.taskView { box-sizing: border-box; height: 80%; overflow-y: auto; padding: 16px;}
+.textBox { 
+	background-color: #FFF; 
+	border-bottom: 3px solid #EAEAEA;
+	color: #333;
+	font-family: 'Roboto';
+	margin-top: 32px;
+	min-height: 96px;
+	padding: 4px 8px 0 85px;
+	position: relative;
 }
+.textBox p { margin: 0; padding: 0;}
 
 ul { display: inline-block; list-style: none; margin: 0; padding: 0;}
 ul li { display: inline-block; margin-left: 16px;}
@@ -265,6 +298,7 @@ ul li { display: inline-block; margin-left: 16px;}
 }
 
 @media screen and (max-width: 361px) {
+	.activities { top: 48px;}
 	#appLogo { max-width: 256px;}
 	header { height: 48px; }
 	/*.card { background-color: #00F;}	*/

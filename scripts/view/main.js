@@ -2,8 +2,7 @@
  * Represents the main view
  */
 TA.View.Main = function(elementID) {
-	// TODO: Identify the cancel & add buttons. 
-	// TODO: Add event listeners to cancel & add buttons.
+	// TODO: Add event listeners add button.
    // TODO: When cancel is pressed, the addTaskDialog should dissapear
 	// 		and we must check if there is any task available in local 
 	// 		storage. If not, the noTasksMsg should appear.
@@ -17,11 +16,15 @@ TA.View.Main = function(elementID) {
 
 
 	var  element = document.getElementById(elementID)
-		, addTaskDialog = document.getElementById('addTaskDialog')
+		, addButton = document.getElementById('addButton')
+		, addTaskActivity = document.getElementById('addTaskActivity')
+		, cancelButton = document.getElementById('cancelButton')
 		, dateField = document.getElementById('dateField')
 		, timeField = document.getElementById('timeField')
-		, tasks = document.getElementById('tasks')
-		, noTasksMsg = document.getElementById('noTasksMsg')
+		, tasksActivity = document.getElementById('tasksActivity')
+		, noTasksActivity = document.getElementById('noTasksActivity')
+		, taskDescription = addTaskActivity.querySelector('textarea')
+		, tasks = TA.App.getTasks()
 		, dateDialControls = []
 		, timeDialControls = []
 		, date = new Date()
@@ -33,10 +36,23 @@ TA.View.Main = function(elementID) {
 		, maxTimeValues = [23,59]
 
 	function addEventListeners(){
-		noTasksMsg.addEventListener('click', onTasksClick, false);
-		noTasksMsg.addEventListener('touchend', onTasksClick, false);
-		tasks.addEventListener('click', onTasksClick, false);
-		tasks.addEventListener('touchend', onTasksClick, false);	
+		addButton.addEventListener('click', onStoreTask, false);
+		addButton.addEventListener('touchend', onStoreTask, false);
+		cancelButton.addEventListener('click', onCancelBtnClick, false);
+		cancelButton.addEventListener('touchend', onCancelBtnClick, false);
+		noTasksActivity.addEventListener('click', onOpenAddTask, false);
+		noTasksActivity.addEventListener('touchend', onOpenAddTask, false);
+	}
+
+	function checkIfTasksAvailable(){
+		console.log(tasks.getItems().length);
+		if (tasks.getItems().length == 0) {
+				noTasksActivity.className = 'activity show';
+				tasksActivity.className = 'activity hide';
+				addTaskActivity.className = 'activity hide';
+		} else {
+			showTasks();
+		}
 	}
 
 	function constructDials(){
@@ -96,29 +112,104 @@ TA.View.Main = function(elementID) {
 		timeDialControls = null;
 	}
 
-	function onTasksClick(evt) {
+
+
+	function onCancelBtnClick(evt){
 		evt.preventDefault();
-		if (noTasksMsg.style.display !== 'none'){
-			noTasksMsg.classList.add('hide');
-			setTimeout(function(){
-				addTaskDialog.classList.add('show');	
-			},875);
-		} else {
-			noTasksMsg.classList.remove('hide');
-		}
+		checkIfTasksAvailable();
+		/*addTaskActivity.className = 'activity hide';
+		noTasksActivity.style.display = 'block';
+		setTimeout(function(){ 
+			addTaskActivity.style.display = 'none';
+			noTasksActivity.className = 'activity show';
+		},875);*/
+	}
+
+	function onOpenAddTask(evt) {
+		evt.preventDefault();
+		noTasksActivity.classList.add('hide');
+		addTaskActivity.style.display = 'block';
+		setTimeout(function(){ 
+			addTaskActivity.className = 'activity show';
+			noTasksActivity.style.display = 'none';
+			tasksActivity.style.display = 'none';
+		}, 375);
+	}
+
+	function onStoreTask(evt){
+		evt.preventDefault();
+		tasks.save({ 
+			'description': taskDescription.value,
+			'month' : dateDialControls[0].getDialValue(),
+			'day' : dateDialControls[1].getDialValue(),
+			'year' : dateDialControls[2].getDialValue(),
+			'hour': timeDialControls[0].getDialValue(),
+			'minutes': timeDialControls[1].getDialValue(),
+			'done': false
+		});
 	}
 
 	function removeEventListeners(){
-		noTasksMsg.removeEventListener('click', onTasksClick, false);
-		noTasksMsg.removeEventListener('touchend', onTasksClick, false);
-		tasks.removeEventListener('click', onTasksClick, false);
-		tasks.removeEventListener('touchend', onTasksClick, false);	
+		addButton.removeEventListener('click', onAddBtnClick, false);
+		addButton.removeEventListener('touchend', onAddBtnClick, false);
+		cancelButton.removeEventListener('click', onCancelBtnClick, false);
+		cancelButton.removeEventListener('touchend', onCancelBtnClick, false);
+		noTasksActivity.removeEventListener('click', onTasksClick, false);
+		noTasksActivity.removeEventListener('touchend', onTasksClick, false);
+	}
+
+	function showTasks() {
+		var  items = tasks.getItems()
+			, taskView = document.createElement('div')
+			, btnView = document.createElement('div')
+			, addButton = document.createElement('a')
+
+		addButton.className = 'button';
+		addButton.setAttribute('id','addButton');
+		addButton.appendChild(document.createTextNode('ADD TASK'));
+		addButton.addEventListener('click', onOpenAddTask, false);
+		addButton.addEventListener('touchend', onOpenAddTask, false);
+		taskView.className = 'taskView';
+		btnView.className = 'buttonView';
+		noTasksActivity.style.display = 'none';
+		addTaskActivity.style.display = 'none';
+		for(var i = 0; i < items.length; i++){
+			var  taskBox = document.createElement('div')
+				, description = document.createElement('p')
+				, date = document.createElement('div')
+				, dayMonth = document.createElement('div')
+				, year = document.createElement('div')
+				, time = document.createElement('div');
+
+			date.className = 'dateField';
+			dayMonth.className = 'dateDayMonth';
+			dayMonth.appendChild(document.createTextNode(
+				TA.App.getDayMonth(items[i].day,items[i].month)));
+			year.className = 'dateYear';	
+			year.appendChild(document.createTextNode(items[i].year));
+			time.className = 'dateTime';
+			time.appendChild(document.createTextNode(
+				TA.App.getTime(items[i].hour,items[i].minutes)));
+			date.appendChild(dayMonth);
+			date.appendChild(year);
+			date.appendChild(time);
+			description.appendChild(document.createTextNode(items[i].description));
+			taskBox.className = 'textBox';
+			taskBox.appendChild(date);
+			taskBox.appendChild(description);
+			taskView.appendChild(taskBox);
+		}
+		btnView.appendChild(addButton);
+		tasksActivity.appendChild(taskView);
+		tasksActivity.appendChild(btnView);
+		tasksActivity.className = 'activity show';
 	}
 
 	this.show = function(){
 		element.classList.add('active');
 		addEventListeners();
 		constructDials();
+		checkIfTasksAvailable();
 	}
 
 	this.hide = function(){

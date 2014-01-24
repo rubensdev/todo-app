@@ -4,7 +4,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta charset="utf-8" />
 		<meta name="description" content=""> 
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+		<meta name="viewport" content="width=device-width,height=device-height,maximum-scale=1,target-densityDpi=device-dpi"/>
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="mobile-web-app-capable" content="yes" />
 		<link rel="apple-touch-icon" href="img/icon.png" />
@@ -36,59 +36,53 @@
 			</section>
 			<section id="main-view" class="view">
 				<header>
-					<div class="wrapper">
-						<img id="settingsButton" src="img/settingsButton.png" /> 
-					</div>
+					<img id="settingsButton" src="img/settingsButton.png" /> 
 				</header>
-					<div class="wrapper">
-						<div id="tasks">
-							<div id="noTasksMsg">
-								<h2>Oops!</h2>
-								<p>It seems you don't have any task to do.It is impossible!</p>
-								<span>Tap the screen to add one.</span>
-							</div>
+				<div class="activities">
+					<div id="noTasksActivity" class="activity">
+						<div class="message">
+							<h2>Oops!</h2>
+							<p>It seems you don't have any task to do.It is impossible!</p>
+							<span>Tap the screen to add one.</span>
 						</div>
-						<div id="addTaskDialog">
-							<textarea placeholder="I'm going to do..."></textarea>
-							<div id="dateNTimeWrapper">
-								<div id="dateField" class="field">
-									<h2>Date</h2>
-									<ul>
-										<li>
-											<canvas data-type="dial" data-ratio="5" id="monthDial"></canvas>
-											<p> Month </p>
-										</li>
-										<li>
-											<canvas data-type="dial" data-ratio="10" id="dayDial"></canvas>
-											<p> Day </p>
-										</li>
-										<li>
-											<canvas data-type="dial" data-ratio="10" id="yearDial"></canvas>
-											<p> Year </p>
-										</li>
-									</ul>
-								</div>
-								<div id="timeField" class="field">
-									<h2>Time</h2>
-									<ul>
-										<li><canvas data-ratio="1.5" id="hourDial"></canvas><p>Hour</p></li>
-										<li><canvas data-ratio="1.5" id="minutesDial"></canvas><p>Minutes</p></li>
-									</ul>
-								</div>
-							</div>
-							<div id="addCancelField">
+					</div>
+					<div id="tasksActivity" class="activity"></div>
+					<div id="addTaskActivity" class="activity">
+						<textarea placeholder="I'm going to do..."></textarea>
+						<div id="dateNTimeWrapper">
+							<div id="dateField" class="field">
+								<h2>Date</h2>
 								<ul>
-									<li><a id="cancelButton" class="button" href="#">CANCEL</a></li>
-									<li><a id="addButton" class="button" href="#">ADD</a></li>
+									<li><canvas data-ratio="5" id="monthDial"></canvas><p> Month </p></li>
+									<li><canvas data-ratio="10" id="dayDial"></canvas><p> Day </p></li>
+									<li><canvas data-ratio="10" id="yearDial"></canvas><p> Year </p></li>
+								</ul>
+							</div>
+							<div id="timeField" class="field">
+								<h2>Time</h2>
+								<ul>
+									<li><canvas data-ratio="1.5" id="hourDial"></canvas><p>Hour</p></li>
+									<li><canvas data-ratio="1.5" id="minutesDial"></canvas><p>Minutes</p></li>
 								</ul>
 							</div>
 						</div>
+						<div id="addCancelField">
+							<ul>
+								<li><a id="cancelButton" class="button" href="#">CANCEL</a></li>
+								<li><a id="addButton" class="button" href="#">ADD</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</section>
 		</section>
 		
 		<script src="libs/raf.js"></script>
 		<script type="text/javascript" src="scripts/misc/namespace.js"></script>
 		<script type="text/javascript" src="scripts/misc/colors.js"></script>
+		<!-- Model Scripts -->
+		<script type="text/javascript" src="scripts/model/base.js"></script>
+		<script type="text/javascript" src="scripts/model/task.js"></script>
 		<!-- View Scripts -->
 		<script type="text/javascript" src="scripts/view/base.js"></script>
 		<script type="text/javascript" src="scripts/view/dial.js"></script>

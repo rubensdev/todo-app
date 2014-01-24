@@ -4,6 +4,9 @@
 TA.App = (function() {
 	var  introController = null
 		, mainController = null
+		, tasks = null
+		, months = ['JAN','FEB','MAR','APR','MAY','JUN',
+		  			  ,'JUL','AUG','SEP','OCT','NOV','DEC']
 		, callbacks = {
 			onIntroComplete : function(){
 				introController.hide();
@@ -18,6 +21,7 @@ TA.App = (function() {
 		window.addEventListener('introcomplete', callbacks.onIntroComplete, false);	
 	}
 
+
 	function dispatchEvent(element, eventName, data){
 		var evt = document.createEvent("Event");
 		evt.initEvent(eventName, true, true);
@@ -25,6 +29,26 @@ TA.App = (function() {
 			evt.data = data;
 		}
 		element.dispatchEvent(evt);
+	}
+
+	function getDayMonth(day, month){
+		var d = day < 10? "0" + day : day;
+		return d + " " + months[month - 1];
+	}
+	
+	function getTasks(){
+		if(!tasks) {
+			tasks = new TA.Model.Task();
+			tasks.restore();
+			tasks.save();
+		}
+		return tasks;
+	}
+
+	function getTime(hour, minutes) {
+		var  h = hour < 10 ? "0" + hour : hour
+			, m = minutes < 10 ? "0" + minutes : minutes;
+		return h + ":" + m;
 	}
 	
 	function init() {
@@ -41,6 +65,9 @@ TA.App = (function() {
 	}
 
 	return {
+		getDayMonth : getDayMonth,
+		getTime : getTime,
+		getTasks: getTasks,
 		init : init,
 		dispatchEvent : dispatchEvent
 	};

@@ -83,6 +83,10 @@ TA.View.DialEntry = function(elementID, w, h) {
 			}
 		};
 
+		this.getDialValue = function() {
+			return dial.getValue();
+		}
+
 		function getDialAngle(evt) {
 			var  x = evt.offsetX // mouse positions relative to the canvas element
 				, y = evt.offsetY
@@ -173,6 +177,7 @@ TA.View.DialEntry = function(elementID, w, h) {
 		this.clear = function() {
 			dial.clear();
 		}
+
 }
 
 TA.View.DialEntry.prototype = new TA.View.Base();

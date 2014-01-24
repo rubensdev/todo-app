@@ -7,11 +7,11 @@ window.addEventListener('load', function() {
 
 	WebFontConfig = {
 		custom: {
-			families: ['Roboto','Roboto Bold','Roboto Light'],
+			families: ['Droid Sans','Droid Sans Bold'],
 			urls: ['css/fonts.css']
 		},
 		fontactive: function(familyName, fvd){
-			if (familyName === "Roboto Light") {
+			if (familyName === "Droid Sans Bold") {
 					TA.App.init();
 			}
 		}
