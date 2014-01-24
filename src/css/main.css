@@ -298,23 +298,36 @@ ul li { display: inline-block; margin-left: 16px;}
 }
 
 @media screen and (max-width: 361px) {
-	.activities { top: 48px;}
-	#appLogo { max-width: 256px;}
-	header { height: 48px; }
-	/*.card { background-color: #00F;}	*/
-	#secondCard { padding: 0 32px 0 32px; }
-	ul li { margin-left: 4px; }
+	.activities { 
+		top: 48px;
+	}
+	#appLogo { 
+		max-width: 256px;
+	}
+	header { 
+		height: 48px; 
+	}
+	#secondCard { 
+		padding: 0 32px 0 32px; 
+	}
+	ul li { 
+		margin-left: 4px; 
+	}
 }
 
 @media screen and (min-width: 361px) and (max-width: 602px) {
-	#appLogo { max-width: 384px;}
-	/*.card { background-color: #0F0;}*/
-	#secondCard { padding: 0 32px 0 32px; }
+	#appLogo { 
+		max-width: 384px;
+	}
+	#secondCard { 
+		padding: 0 32px 0 32px; 
+	}
 }
 
 @media screen and (min-width: 603px) {
-	#appLogo { max-width: 384px; }
- 	/*.card { background-color: #0FF;}*/
+	#appLogo { 
+		max-width: 384px; 
+	}
 }
 
 /*** TESTING ***/

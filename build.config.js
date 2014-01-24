@@ -6,8 +6,8 @@ module.exports = {
 		atpl : [ 'src/app/**/*.tpl.html'], 
 		ctpl : [ 'src/common/**/*.tpl.html'], /* Reusable components */
 		html : [ 'src/index.html'],
-		less : 'src/less/main.less'
-	}
+		css : ['src/css/*.css']
+	},
 	build_dir: 'build',
 	compile_dir: 'bin',
 	/* Third party libraries which will be concatenated and
