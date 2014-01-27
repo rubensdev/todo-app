@@ -38,7 +38,8 @@ module.exports = function(grunt) {
 				'/**\n' + 
 				' * <%= pkg.name %> - v<%= pkg.version %> - ' +
             ' <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-				' * <%= pkg.homepage %>\n'
+				' * <%= pkg.homepage %>\n' +
+				' **/'
 		},
 		/** 
 		 * Increments the version number, etc.
@@ -105,6 +106,7 @@ module.exports = function(grunt) {
 		},
 		/**
 		 * The 'copy' task just copies files from A to B.
+		 * build_appjs, build_app_assets, etc. are targets
 		 **/
 		copy: {
 			build_appjs : {
@@ -146,6 +148,68 @@ module.exports = function(grunt) {
 					cwd: '<%= build_dir %>/assets',
 					expand: true
 				}]
+			}
+		},
+		/**
+		 * The 'delta' task replaces the 'watch' default task that checks to see if
+		 * any of the files listed below change.
+		 **/
+		delta: {
+			options: {
+				livereload: true /* it runs by default on port 35729 */
+			},
+			/**
+			 * When the gruntfile changes it will be reloaded and we
+          * want to lint it.
+			 **/	
+			gruntfile: {
+				files: 'Gruntfile.js',
+				tasks: ['jshint:gruntfile'],
+				options: {
+					livereload: false
+				}
+			},
+			/**
+			 * When our JavaScript source files change, we want to runt lint them
+			 * and run our unit tests.
+			 **/
+			jssrc: {
+				files: ['<%= app_files.js %>'],
+				tasks: ['jshint:src', 'karma:unit:run', 'copy:build_appjs']
+			},
+			/**
+			 *	When assets are changed, copy them. Note that this will *not* copy
+			 * new files, so this is probably not very useful.
+			 **/
+			assets: {
+				files: ['src/assets/**/*'],
+				tasks: ['copy:build_assets']
+			},
+			/**
+			 * When index.html changes, we need to compile it.
+			 **/
+			html: {
+				files: ['<%= app_files.html %>'],
+				tasks: ['index:build']
+			},
+			/**	
+			 * When our templates change, we only rewrite the
+			 * template cache.
+			 **/
+			tpls: {
+				files: ['<%= app_files.atpl %>', '<%= app_files.ctpl %>'],
+				tasks: ['html2js']
+			},
+			/**
+			 * When a Javascript unit test file changes, we only want to lint
+          * it and run the unit tests. We don't want to do any live reloading.
+			 **/
+			jsunit: {
+				files: ['<%= app_files.jsunit %>'],
+				tasks: ['jshint:test', 'karma:unit:run'],
+				options: {
+					livereload: false
+				}
 			}
 		},
 		/**
@@ -197,7 +261,7 @@ module.exports = function(grunt) {
 		},
 		/**
 		 * 'jshint' defines the rules of our linter as well as which files we 
-		 *	should check.
+		 *	should check (src, test and gruntfile are targets)
 		 **/
 		jshint: {
 			src: ['<%= app_files.js %>'],
@@ -292,14 +356,16 @@ module.exports = function(grunt) {
 				files: { '<%= concat.compile_js.dest %>': '<%= concat.compile_js.dest %>'}
 			}
 		}
-		/** TODO:  We have to set the watch function here (with delta) */
 	};
 
-	grunt.initConfig(grunt.util._.extend(taskConfig,userConfig));
-	/** 
-	 * grunt.renameTask('watch', 'delta');
-	 * grunt.registerTask('watch', ['build', 'karma:unit', 'delta']);
-	 **/
+	grunt.initConfig(grunt.util._.extend(taskConfig,userConfig)); 
+
+	/**
+	 * Renaming 'watch' task to 'delta' in order to make safe to just compile 
+    * or copy *only* what was changed.
+	 **/	
+	grunt.renameTask('watch', 'delta');
+	grunt.registerTask('watch', ['build', 'karma:unit', 'delta']);
 
 	/** 
 	 * The Default task is to build and compile 

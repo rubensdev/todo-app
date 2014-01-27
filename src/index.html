@@ -1,20 +1,28 @@
 <!DOCTYPE html>
-<html><!-- manifest="cache.manifest" -->
+<html ng-app="todoApp"><!-- manifest="cache.manifest" -->
 	<head>
+		<!-- TODO: Learn more about social media tags -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta charset="utf-8" />
 		<meta name="description" content=""> 
 		<meta name="viewport" content="width=device-width,height=device-height,maximum-scale=1,target-densityDpi=device-dpi"/>
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="mobile-web-app-capable" content="yes" />
-		<link rel="apple-touch-icon" href="img/icon.png" />
-		<link rel="shortcut icon" sizes="196x196" href="img/icon.png">
-		<link rel="stylesheet" href="css/fonts.css" />
-		<link rel="stylesheet" href="css/todoapp.css" />
+		<link rel="apple-touch-icon" href="assets/img/icon.png" />
+		<link rel="shortcut icon" sizes="196x196" href="assets/img/icon.png">
+		<!-- compiled CSS -->
+		<% styles.forEach(function(file){ %>
+		<link rel="stylesheet" type="text/css" href="<%= file %>" />
+		<% }); %>
 		<title>RubensDEV Todo App</title>
 	</head>
 	<body class="loading">
-		<section class="page">
+		<!-- TODO: Include the header template -->
+		<div class="container" ui-view="main"></div>
+		<p> Hol mundo </p>
+		<!-- TODO: Include the footer template -->
+
+		<!-- <section class="page">
 			<section id="intro-view" class="view">
 				<div class="card">
 					<img id="appLogo" src="img/applogo.png" />
@@ -96,6 +104,11 @@
 		<script type="text/javascript" src="scripts/controller/intro.js"></script>
 		<script type="text/javascript" src="scripts/controller/main.js"></script>
 		<!-- Bootstrap -->
-		<script type="text/javascript" src="scripts/misc/bootstrap.js"></script>
+		<script type="text/javascript" src="scripts/misc/bootstrap.js"></script> -->
+
+		<!-- Compiled Javascript -->
+		<% scripts.forEach(function(file){ %>
+		<script type="text/javascript" src="<%= file %>"></script>
+		<% }); %>
 	</body>
 </html>
