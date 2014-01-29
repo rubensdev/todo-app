@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta charset="utf-8" />
 		<meta name="description" content=""> 
-		<meta name="viewport" content="width=device-width,height=device-height,maximum-scale=1,target-densityDpi=device-dpi"/>
+		<meta name="viewport" content="width=device-width,height=device-height,maximum-scale=1,user-scalable=no"/>
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="mobile-web-app-capable" content="yes" />
 		<link rel="apple-touch-icon" href="assets/img/icon.png" />
@@ -17,94 +17,8 @@
 		<title>RubensDEV Todo App</title>
 	</head>
 	<body class="loading">
-		<!-- TODO: Include the header template -->
-		<div class="container" ui-view="main"></div>
-		<p> Hol mundo </p>
-		<!-- TODO: Include the footer template -->
-
-		<!-- <section class="page">
-			<section id="intro-view" class="view">
-				<div class="card">
-					<img id="appLogo" src="img/applogo.png" />
-					<div id="firstCard" class="cardDescription">
-						<h1>Flat TODO List</h1>
-						<h2>By RubensDEV</h2>
-						<p>Welcome to the app. I hope you enjoy it.</p>
-						<a class="next" href="#">Next</a>
-					</div>
-				</div> 
-				<div class="card">
-					<div id="secondCard" class="cardDescription">
-						<h2>This is only a demo!</h2>
-						<p>This demo ends here. I'm working hard to give you the best user 
-                  experience I can.</p>
-						<a class="next" href="#">Ok,I got it</a>
-					</div>
-				</div> 
-			</section>
-			<section id="main-view" class="view">
-				<header>
-					<img id="settingsButton" src="img/settingsButton.png" /> 
-				</header>
-				<div class="activities">
-					<div id="noTasksActivity" class="activity">
-						<div class="message">
-							<h2>Oops!</h2>
-							<p>It seems you don't have any task to do.It is impossible!</p>
-							<span>Tap the screen to add one.</span>
-						</div>
-					</div>
-					<div id="tasksActivity" class="activity"></div>
-					<div id="addTaskActivity" class="activity">
-						<textarea placeholder="I'm going to do..."></textarea>
-						<div id="dateNTimeWrapper">
-							<div id="dateField" class="field">
-								<h2>Date</h2>
-								<ul>
-									<li><canvas data-ratio="5" id="monthDial"></canvas><p> Month </p></li>
-									<li><canvas data-ratio="10" id="dayDial"></canvas><p> Day </p></li>
-									<li><canvas data-ratio="10" id="yearDial"></canvas><p> Year </p></li>
-								</ul>
-							</div>
-							<div id="timeField" class="field">
-								<h2>Time</h2>
-								<ul>
-									<li><canvas data-ratio="1.5" id="hourDial"></canvas><p>Hour</p></li>
-									<li><canvas data-ratio="1.5" id="minutesDial"></canvas><p>Minutes</p></li>
-								</ul>
-							</div>
-						</div>
-						<div id="addCancelField">
-							<ul>
-								<li><a id="cancelButton" class="button" href="#">CANCEL</a></li>
-								<li><a id="addButton" class="button" href="#">ADD</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
-		</section>
 		
-		<script src="libs/raf.js"></script>
-		<script type="text/javascript" src="scripts/misc/namespace.js"></script>
-		<script type="text/javascript" src="scripts/misc/colors.js"></script>
-		<!-- Model Scripts -->
-		<script type="text/javascript" src="scripts/model/base.js"></script>
-		<script type="text/javascript" src="scripts/model/task.js"></script>
-		<!-- View Scripts -->
-		<script type="text/javascript" src="scripts/view/base.js"></script>
-		<script type="text/javascript" src="scripts/view/dial.js"></script>
-		<script type="text/javascript" src="scripts/view/dialentry.js"></script>
-		<script type="text/javascript" src="scripts/view/intro.js"></script>
-		<script type="text/javascript" src="scripts/view/main.js"></script>
-		<!-- App -->
-		<script type="text/javascript" src="scripts/app.js"></script>
-		<!-- Controller Scripts -->
-		<script type="text/javascript" src="scripts/controller/base.js"></script> 
-		<script type="text/javascript" src="scripts/controller/intro.js"></script>
-		<script type="text/javascript" src="scripts/controller/main.js"></script>
-		<!-- Bootstrap -->
-		<script type="text/javascript" src="scripts/misc/bootstrap.js"></script> -->
+		<div class="container" ng-view></div>
 
 		<!-- Compiled Javascript -->
 		<% scripts.forEach(function(file){ %>

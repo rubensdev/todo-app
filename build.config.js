@@ -20,4 +20,7 @@ module.exports = {
 		css: [],
 		assets: []
 	},
+	test_files: {
+		js : ['vendor/angular-mocks/angular-mocks.js']
+	}
 }

@@ -95,11 +95,11 @@ module.exports = function(grunt) {
 				},
 				src: [
 					'<%= vendor_files.js %>',
-					//'module.prefix'
+					'module.prefix',
 					'<%= build_dir %>/src/**/*.js',
 					'<%= html2js.app.dest %>',
-					'<%= html2js.common.dest %>'
-					//'module.suffix'
+					'<%= html2js.common.dest %>',
+					'module.suffix'
 				],
 				dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
 			}
@@ -295,12 +295,8 @@ module.exports = function(grunt) {
 				src: [
 					'<%= vendor_files.js %>',
 					'<%= html2js.app.dest %>',
-					'<%= html2js.common.dest %>'
-					/** 
-					 * It's a build_config parameter which holds 
-					 * the angular-mocks library. TODO: Do a research 
-					 **/ 
-					//'<%= test_files.js %>'	
+					'<%= html2js.common.dest %>',
+					'<%= test_files.js %>'	
 				]
 			}
 		},
@@ -377,7 +373,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', [
 		'clean', 'html2js', 'jshint', 'recess:build', 'concat:build_css', 
 		'copy:build_app_assets', 'copy:build_vendor_assets','copy:build_appjs',
-		'copy:build_vendorjs','index:build'/*, 'karmaconfig', 'karma:continuous'*/
+		'copy:build_vendorjs','index:build', 'karmaconfig', 'karma:continuous'
 	]);
 	/**
 	 * The 'compile' task gets your app ready for deployment by concatenating
@@ -441,7 +437,8 @@ module.exports = function(grunt) {
 	 * the list into variables for the template to use and then runs the
 	 * compilation.
 	 **/
-	grunt.registerMultiTask('index', 'Process index.html template', processIndexTemplate);
+	grunt.registerMultiTask('index', 'Process index.html template', 
+		processIndexTemplate);
 
 	
 	/**
@@ -449,7 +446,7 @@ module.exports = function(grunt) {
 	 *	run, we use grunt to manage the list for us. The 'karma/*' files are
 	 * compiled as grunt templates for use by Karma.
 	 **/
-	//grunt.registerMultiTask('karmaconfig', 'Process karma config templates', 
-	//	processKarmaTemplate);
+	grunt.registerMultiTask('karmaconfig', 'Process karma config templates', 
+		processKarmaTemplate);
 };
 
