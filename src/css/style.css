@@ -1,0 +1,381 @@
+#addTaskButton {
+	background-position: -1px -1px;
+	border-radius: 32px;
+	cursor: pointer;
+	margin: 0 auto;
+	height: 48px;
+	position: relative;
+	top: 12px;
+	width: 48px;
+}
+
+#addTaskForm {
+	background-color: #ffe66a;
+	border-bottom: 6px solid #E7D161;
+	left: 50%;
+	padding: 16px;
+	position: fixed;
+	width: 95%;
+	-webkit-transform: translate(-50%,-100%);
+	-webkit-transition: all .875s ease-out;
+	z-index: 4;
+}
+
+#addTaskForm.active {
+	-webkit-transform: translate(-50%,72px);
+}
+
+#addTaskForm .buttonsPanel {
+	margin-top: 32px;
+	text-align: center;
+}
+
+#addTaskForm textarea {
+	border: none;
+	color: #444;
+	font-family: 'Droid Sans';
+	font-size: 1em;
+	height: 96px;
+	margin-bottom: 16px;
+	padding: 8px;
+	width: 100%;
+	resize: none;
+}
+
+#addTaskForm .counter {
+	height: 36px;
+	text-align: right;
+}
+#addTaskForm .counter.red {
+	color: #e74c3c;
+}
+
+#addTaskForm h3 {
+	background-color: #e7d161;
+	font-family: 'Droid Sans';
+	color: #FFF;
+	margin-bottom: 16px;
+	padding: 8px;
+	text-align: center;
+	width: 100%;
+}
+
+
+body, html {
+	background-color: #ECECEC;
+	font-family: 'Droid Sans';
+	height: 100%;
+	width: 100%;
+	-webkit-overflow-scrolling: touch;
+}
+
+.button {
+	background-color: #ff6e6e;
+	color: #FFF;
+	cursor: pointer;
+	display: inline-block;
+	font-family: 'Droid Sans';
+	font-size: 0.9em;
+	padding: 8px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.button.medium {
+	width: 94px;
+}
+
+
+/*****************
+ * FIRST RUN CARDS
+ *****************/
+
+.card {
+	background-color: #E74C3C;
+	position: fixed;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	-webkit-transition: opacity .375s ease-out;
+}
+
+.card.hide {
+	opacity: 0;
+}
+
+.card h1 {
+	color: #FFF;
+	font-family: 'Droid Sans';
+	font-size: 1.8em;
+	padding: 16px;
+}
+
+.card p {
+	color: #FFF;
+	line-height: 24px;
+	padding: 16px;
+}
+
+.card a {
+	border: 2px solid #FFF;
+	color: #FFF;
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	padding: 8px;
+	margin: 0 auto;
+	width: 96px;
+}
+
+.card .hints {
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+}
+
+.card .hints h2 {
+	font-size: 1.2em;
+}
+
+#card1 #logo {
+	max-width: 300px;
+	position: relative;
+	-webkit-transform: translateY(-100%) rotate(0deg);
+	-webkit-transition: all .875s ease-out;
+}
+#card1 #logo.show {
+	-webkit-transform: translateY(0%) rotate(360deg);
+}
+#card1 #appTitle {
+	opacity: 0;
+	text-align: center;
+	-webkit-transition: opacity .375s ease-out;
+}
+#card1 #appTitle.show {
+	opacity: 1;
+}
+#card1 #appTitle h1 {
+	font-size: 2.8em;
+	padding: 4px;
+}
+#card1 #appTitle h2 {
+	color: #FFF;
+	margin: 6px;
+}
+#card1 #appTitle p {
+	color: #FFF;	
+	margin: 8px;
+}
+
+#card2 #img_example {
+	background-position: -1px -1px;
+	border-radius: 32px;
+	margin: 0 auto;
+	height: 48px;
+	width: 48px;
+}
+
+header {
+	background-color: #F00;
+	height: 72px;
+	text-align: center;
+	position: fixed;
+	z-index: 5;
+	width: 100%;
+}
+
+header button {
+	margin: 16px 0;
+	height: 32px;
+	width: 64px;
+}
+
+/****
+ * COMMON
+ ****/
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+*:focus {
+	outline: none;
+	-webkit-appareance: none;
+}
+
+input {
+	border: none;
+	font-family: 'Droid Sans';
+	border-radius: 0px;
+}
+
+.icon {
+	background: url('../assets/img/iconsmap.png');
+}
+
+h1 { 
+	color: #333;
+	font-family: 'Droid Sans Bold';
+}
+p { 
+	color: #444;
+	font-family: inherit;
+}
+
+[ng-cloak] { display: none; } /* TODO: What was this used for? */
+
+/****
+ * FILTERS 
+ ****/
+#filters {
+	background-color: #ffe66a;
+	border-bottom: 4px solid #e9d261;
+	position: absolute;
+	left: 50%;
+	top: 71px;
+	text-align: center;
+	padding: 8px;
+	margin: 0 auto;
+	width: 90%;
+	z-index: 3;
+	-webkit-transform: translateX(-50%);
+}
+
+#filters li {
+	display: inline-block;
+} 
+
+#filters li a {
+	background-color: #ca3b3b;
+	color: #f88d82;
+	display: block;
+	font-family: 'Droid Sans';
+	font-size: 0.9em;
+	text-decoration: none;
+	padding: 8px;
+	width: 96px;
+}
+
+#filters li a.selected{
+	background-color: #e74c3c;
+	color: #FFF;
+}
+
+/****
+ * TASKS
+ ****/
+
+#taskList {
+	padding: 64px 16px 64px 16px;
+	position: absolute;
+	top: 72px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow-y: auto;
+	z-index: 0;
+}
+
+#taskList li {
+	margin: 16px 0;
+}
+
+#taskList li #editTaskForm {
+	display: none;
+}
+
+#taskList li .taskView {
+	background-color: #FFF;
+	min-height: 106px;
+	padding: 16px;
+	position: relative;
+	z-index: 1;
+}
+
+#taskList li .taskView .colorTask {
+	height: 96px;
+}
+
+#taskList li .taskView .taskTitle {
+	background-color: #FFF;
+	color: #333;
+	font-family: 'Droid Sans';
+	text-align: justify;
+	padding: 16px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 1;
+	word-break: break-word;
+}
+
+#taskList li .taskView .taskCheck {
+	background-color: rgba(0,0,0,0.2);
+	background-position: -50px -1px;
+	position: absolute;
+	height: 24px;
+	width: 24px;
+	left: -40px;
+	-webkit-appearance: none;
+	    -ms-appearance: none;
+		  -o-appearance: none;
+			  appearance: none;
+}
+
+#taskList li .taskView .taskCheck:checked {
+	background-color: rgba(255,255,255,0.2);
+	background-position: -75px -1px;
+}
+
+#taskList li .menuTaskPanel {
+	background-color: #ffe66a;	
+	border-bottom: 4px solid #e7d161;
+	position: absolute;
+	left: 50%;
+	text-align: center;
+	width: 80%;
+	-webkit-transform: translateX(-50%) scale(1,0);
+	-webkit-transition: all .375s ease-out;
+	-webkit-transform-origin: 0% 0%;
+	z-index: 9999;
+} 
+
+#taskList li .menuTaskPanel.active {
+	-webkit-transform: translateX(-50%) scale(1,1);
+}
+
+#taskList li .menuTaskPanel .menuIcon {
+	display: inline-block;
+	height: 64px;
+	width: 64px;
+	margin: 0px 8px 0px 8px;
+}
+
+#taskList li .menuTaskPanel #editTask {
+	background-position: -165px -2px;
+}
+
+#taskList li .menuTaskPanel #deleteTask {
+	background-position: -100px -2px;
+}
+
+
+/*****
+ * Media Queries
+ ****/
+@media only screen 
+and (max-width : 480px) 
+and (orientation : portrait) {
+	#card1 #logo {
+		max-width: 224px;
+	}
+	#card1 #appTitle h1 {
+		font-size: 2em;
+	}
+	#filters li a {
+		padding: 8px;
+		width: 86px;
+	}
+}

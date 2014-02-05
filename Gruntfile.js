@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-conventional-changelog');
 	grunt.loadNpmTasks('grunt-html2js');
-	grunt.loadNpmTasks('grunt-karma');
+	//grunt.loadNpmTasks('grunt-karma');
 	grunt.loadNpmTasks('grunt-ngmin');
 	grunt.loadNpmTasks('grunt-recess');
 
@@ -109,7 +109,7 @@ module.exports = function(grunt) {
 		 * build_appjs, build_app_assets, etc. are targets
 		 **/
 		copy: {
-			build_appjs : {
+			build_appjs: {
 				files:  [{
 					src: ['<%= app_files.js %>'],
 					dest: '<%= build_dir %>/',
@@ -148,6 +148,13 @@ module.exports = function(grunt) {
 					cwd: '<%= build_dir %>/assets',
 					expand: true
 				}]
+			},
+			compile_manifest: {
+				files: [{
+					src: ['<%= app_files.manifest %>'],
+					dest: '<%= compile_dir %>/',
+					expand: true
+				}]
 			}
 		},
 		/**
@@ -157,6 +164,14 @@ module.exports = function(grunt) {
 		delta: {
 			options: {
 				livereload: true /* it runs by default on port 35729 */
+			},
+			/**
+			 * When any of CSS files change, they will be concatenated
+          * again.
+			 **/
+			css: {
+				files: ['<%= app_files.css %>'],
+				tasks: ['recess:build']
 			},
 			/**
 			 * When the gruntfile changes it will be reloaded and we
@@ -175,7 +190,7 @@ module.exports = function(grunt) {
 			 **/
 			jssrc: {
 				files: ['<%= app_files.js %>'],
-				tasks: ['jshint:src', 'karma:unit:run', 'copy:build_appjs']
+				tasks: ['jshint:src', /*'karma:unit',*/ 'copy:build_appjs']
 			},
 			/**
 			 *	When assets are changed, copy them. Note that this will *not* copy
@@ -206,7 +221,7 @@ module.exports = function(grunt) {
 			 **/
 			jsunit: {
 				files: ['<%= app_files.jsunit %>'],
-				tasks: ['jshint:test', 'karma:unit:run'],
+				tasks: ['jshint:test' /*,'karma:unit'*/ ],
 				options: {
 					livereload: false
 				}
@@ -281,9 +296,16 @@ module.exports = function(grunt) {
 		 * The karma configurations.
 		 **/
 		karma: {
-			options: { configFile: '<%= build_dir %>/karma-unit.js'},
-			unit: { runnerPort: 9101, background: true },
-			continuous: { singleRun: true}
+			options: { 
+				configFile: '<%= build_dir %>/karma-unit.js'
+			},
+			unit: { 
+				background: true
+			},
+			continuous: {
+				background: false,
+				singleRun: true
+			}
 		},
 		/**
 		 * This task compiles the karma template so that changes to its file array
@@ -361,7 +383,7 @@ module.exports = function(grunt) {
     * or copy *only* what was changed.
 	 **/	
 	grunt.renameTask('watch', 'delta');
-	grunt.registerTask('watch', ['build', 'karma:unit', 'delta']);
+	grunt.registerTask('watch', ['build'/*, 'karma:unit'*/, 'delta']);
 
 	/** 
 	 * The Default task is to build and compile 
@@ -373,14 +395,14 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', [
 		'clean', 'html2js', 'jshint', 'recess:build', 'concat:build_css', 
 		'copy:build_app_assets', 'copy:build_vendor_assets','copy:build_appjs',
-		'copy:build_vendorjs','index:build', 'karmaconfig', 'karma:continuous'
+		'copy:build_vendorjs','index:build'/*, 'karmaconfig', 'karma:continuous'*/
 	]);
 	/**
 	 * The 'compile' task gets your app ready for deployment by concatenating
 	 * and minifying your code.
 	 **/
 	grunt.registerTask('compile', [
-		'recess:compile', 'copy:compile_assets', 'ngmin', 
+		'recess:compile', 'copy:compile_assets', 'copy:compile_manifest', 'ngmin', 
 		'concat:compile_js', 'uglify', 'index:compile'
 	]);
 	/**
@@ -448,5 +470,6 @@ module.exports = function(grunt) {
 	 **/
 	grunt.registerMultiTask('karmaconfig', 'Process karma config templates', 
 		processKarmaTemplate);
+
 };
 

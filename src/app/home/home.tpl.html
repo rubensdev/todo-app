@@ -1,0 +1,36 @@
+<section id="main" ng-controller="HomeController">
+	<header id="header">
+		<div class="icon" id="addTaskButton" ng-click="showPanel()"></div>
+	</header>
+	<div id="addTaskForm" ng-class="{'active' : showTaskPanel}">
+		<textarea name="newTask" placeholder="Mmm... What needs to be done?" ng-model="newTask" maxlength="140"></textarea>
+		<p class="counter" ng-class="{'red' : maxLength}" ng-bind="countChars()"></p>
+		<h3> Task Color</h3>
+		<rzslider
+			rz-slider-floor="0"
+			rz-slider-ceil="colorMax"
+			rz-slider-model="color"
+			rz-slider-translate="colorTranslate"></rzslider>
+		<div class="buttonsPanel">
+			<div id="cancelButton" class="button medium" ng-click="cancel()">Cancel</div>
+			<div id="submitButton" class="button medium" ng-click="editing? doneEditing() : addTask()">{{ editing? 'Edit' : 'Submit'}}</div>
+		</div>
+	</div>
+	<ul id="filters">
+		<li><a href ng-click="changeStatus('')" ng-class="{'selected' : status == ''}">All</a></li>
+		<li><a href ng-click="changeStatus('active')" ng-class="{'selected' : status == 'active'}">Active</a></li>
+		<li><a href ng-click="changeStatus('completed')" ng-class="{'selected' : status == 'completed'}">Completed</a></li>
+	</ul>
+	<ul id="taskList">
+		<li ng-repeat="task in tasks | filter:statusFilter track by $index">
+			<div class="taskView" style="border-left: 48px solid {{task.color}};">
+				<input class="taskCheck icon" type="checkbox" ng-model="task.completed" />
+				<div class="taskTitle" ng-click="showMenu = !showMenu">{{ task.title }}</div>	
+			</div>
+			<div class="menuTaskPanel" ng-class="{'active' : showMenu && !editing}">
+				<div id="editTask" class="menuIcon icon" ng-click="editTask(task)"></div>
+				<div id="deleteTask" class="menuIcon icon" ng-click="removeTask(task)"></div> 
+			</div>
+		</li>
+	</ul>
+</section>

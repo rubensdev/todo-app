@@ -1,5 +1,11 @@
-var todoApp = angular.module('todoApp', []);
+angular.module('app', ['home','firstrun', 'ngRoute','templates-app'])
 
-todoApp.controller('mainCtrl',['$scope','$location', function($scope, $location){
-	console.log('Lol');
+.run(['tasksStorage','$location', function(tasksStorage,$location){
+	var firstRun = tasksStorage.isFirstRun();
+	if(firstRun){
+		$location.path('/firstrun');
+	} else {
+		$location.path('/home');
+	}
 }]);
+

@@ -1,31 +1,35 @@
 {
-   "author": "Rubens García",
-   "bugs": {
-   	"url": "https://github.com/rubensdev/todo-app/issues"
-   },
-	"dependencies": {},
-	"devDependencies": {
-		"grunt" : "~0.4.1",
-		"grunt-recess" : "~0.3.0",
-		"grunt-contrib-clean": "~0.4.1",
-		"grunt-contrib-copy": "~0.4.1",
-		"grunt-contrib-jshint": "~0.4.1",
-		"grunt-contrib-concat": "~0.3.0",
-		"grunt-contrib-watch": "~0.4.0",
-		"grunt-contrib-uglify": "~0.2.0",
-		"grunt-karma": "~0.5.0",
-		"grunt-ngmin": "~0.0.2",
-		"grunt-html2js": "~0.1.3",
-		"grunt-conventional-changelog" : "~0.1.1",
-		"grunt-bump" : "0.0.6"
-	},
-   "description": "A Simple TODO app built with AngularJS",
-  	"homepage": "https://github.com/rubensdev/todo-app",
-   "license": "ISC",
-	"name": "todo-app",
-   "repository": {
-   	"type": "git",
- 	   "url": "https://github.com/rubensdev/todo-app.git"
-	},
-	"version": "0.0.0"
+  "author": "Rubens García",
+  "bugs": {
+    "url": "https://github.com/rubensdev/todo-app/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-recess": "~0.3.0",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-jshint": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-watch": "~0.4.0",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-ngmin": "~0.0.2",
+    "grunt-html2js": "~0.1.3",
+    "grunt-conventional-changelog": "~0.1.1",
+    "grunt-bump": "0.0.6",
+    "qunitjs": "~1.12.0",
+    "karma-qunit": "~0.1.1",
+    "karma-ie-launcher": "~0.1.1",
+    "karma-chrome-launcher": "~0.1.2",
+    "grunt-karma": "~0.6.2"
+  },
+  "description": "A Simple TODO app built with AngularJS",
+  "homepage": "https://github.com/rubensdev/todo-app",
+  "license": "ISC",
+  "name": "todo-app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rubensdev/todo-app.git"
+  },
+  "version": "0.0.0"
 }

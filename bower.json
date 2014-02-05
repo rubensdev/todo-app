@@ -1,10 +1,10 @@
 {
-	"name": "todo-app",
-	"version": "0.0.0",
-	"devDependencies": {
-		"angular" : "~1.2.9",
-	   "angular-mocks" : "~1.2.9",
-		"angular-route" : "~1.2.9"
-	},
-	"dependencies" : {}
+  "name": "todo-app",
+  "version": "0.0.0",
+  "devDependencies": {
+    "angular": "~1.2.9",
+    "angular-mocks": "~1.2.9",
+	 "angular-ui-router": "~0.2.8",
+    "angular-route": "~1.2.9"
+  }
 }

@@ -7,8 +7,8 @@ module.exports = function(karma) {
 		/**
 		 * This is the list of file patterns to load into the browser during testing.
 		 **/
-		files: [
-			<% scripts.forEach(function(file) { %> '<%= file %>', <% }); %>
+		files: [ <% scripts.forEach(function(file) { %> 
+			'<%= file %>',<% }); %>
 			'src/**/*.js'
 		],
 		exclude: ['src/assets/**/*.js'],
@@ -23,8 +23,8 @@ module.exports = function(karma) {
 		 * On which port should the browser connect, on which port is the test runner
        * operating, and what is the URL path for the browser to use.
 		 **/
-		port: 9018,
-		runnerPort: 9100,
+		/*port: 9876,*/
+		/*runnerPort: 9101,*/
 		urlRoot: '/',
 		/**
 		 * Disable file watching by default
@@ -34,6 +34,6 @@ module.exports = function(karma) {
 		 * List of browsers to launch to test on. You may leave this blank and go
        * to http://localhost:9018.
 		 **/
-		browsers: ['Firefox']
+		browsers: ['Chrome'],
 	});
 }
