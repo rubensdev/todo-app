@@ -374,8 +374,12 @@ and (orientation : portrait) {
 	#card1 #appTitle h1 {
 		font-size: 2em;
 	}
+	#filters {
+		width: 95%;
+	}
 	#filters li a {
+		font-size: 0.8em;
 		padding: 8px;
-		width: 86px;
+		width: 93px;
 	}
 }

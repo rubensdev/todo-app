@@ -18,6 +18,7 @@ module.exports = {
 			'vendor/angular/angular.js',
 			'vendor/angular-route/angular-route.js',
 			'vendor/angular-touch/angular-touch.js',
+			'vendor/angular-translate/angular-translate.js',
 			'vendor/rzslider/rzslider.js'
 			//'vendor/angular-ui-router/release/angular-ui-router.js'
 		],

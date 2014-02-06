@@ -1,20 +1,19 @@
 <section id="firstrun" ng-controller="FirstRunController">
 	<div id="card3" class="card" ng-class="{'hide' : nextCard === 3}">
 		<div class="hints">
-		 	<h1> Modifying or deleting tasks and Reset Data</h1>
-		 	<p> If you tap on the task, a menu will appear with two options: edit and delete.</p>
-			<p> For reseting all data, add a task with the word <h2>"Rayuela"</h2></p>
-			<p> That's all, hope you enjoy it!</p>
-			<a href ng-click="next()">Ok,Go!</a>
+		 	<h1 translate="MODDELRESET_TITLE"></h1>
+		 	<p translate="MODDELRESET_MSG1"></p>
+			<p translate="MODDELRESET_MSG2"></p>
+			<p translate="MODDELRESET_ENJOY"></p>
+			<a translate="NEXT_GO" href ng-click="next()"></a>
 		</div>
 	</div>
 	<div id="card2" class="card" ng-class="{'hide' : nextCard === 2}">
 		<div class="hints">
-			<h1> Adding tasks</h1>
+			<h1 translate="ADDINGTASK_TITLE"></h1>
 			<div id="img_example" class="icon"></div>
-			<p> This button makes some magic. When you push it, 
-	          a panel will appear (it's intuitive, don't worry)</p>
-			<a href ng-click="next()">Next</a>
+			<p translate="ADDINGTASK_MSG"></p>
+			<a translate="NEXT_BUTTON" href ng-click="next()"></a>
 		</div>
 	</div>
 	<div id="card1" class="card" ng-class="{'hide': nextCard === 1}">
@@ -22,8 +21,8 @@
 		<div id="appTitle" ng-class="{'show': showText}">
 			<h1>FLAT TODO LIST</h1>
 			<h2>By RubensDEV</h2>
-			<p>Welcome to the app. Tap the Next button</p>
-			<a href ng-click="next()">Next</a>
+			<p translate="WELCOME_APP"></p>
+			<a translate="NEXT_BUTTON" href ng-click="next()"></a>
 		</div>
 	</div>
 </section>
