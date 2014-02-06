@@ -1,6 +1,7 @@
 CACHE MANIFEST
 #2014-02-05:v24
 
+CACHE:
 # Explicity cached entries
 index.html
 assets/fonts/DroidSans.ttf
