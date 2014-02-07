@@ -1,8 +1,0 @@
-TA.Colors = {
-	"FLAT_RED" : "#E74C3C",
-	"FLAT_TURQUOISE" : "#1ABC9C",
-	"FLAT_VIOLET": "#9B59B6",
-	"WHITE": "#FFFFFF",
-	"MEDIUM_GRAY": "#CCCCCC",
-	"LIGHT_GRAY": "#DDDDDD" 
-}

@@ -1,57 +1,25 @@
-angular.module('home',['ngRoute','rzModule','pascalprecht.translate'])
+angular.module('home',['ngRoute','rzModule'])
 
-.config(['$routeProvider','$translateProvider', function($routeProvider,$translateProvider){
+.config(['$routeProvider', function($routeProvider){
 	$routeProvider.when('/home', {
 		templateUrl: 'home/home.tpl.html',
 		controller: 'HomeController',
 		title: 'Home'
 	});
-	$translateProvider.translations('en', {
-		'ALLTASKS'        : 'All',
-		'ACTIVETASKS'     : 'Active',
-		'CANCEL_BTN'      : 'Cancel',
-		'COMPLETEDTASKS'  : 'Completed',
-		'EDIT_BTN'        : 'Edit',
-		'SUBMIT_BTN'      : 'Submit',
-		'TASKCOLOR_TITLE' : 'Task Color', 
-		'TEXTAREA_PH'     : 'Mmm... What needs to be done?'
-	})
-	.translations('es', {
-		'ALLTASKS'        : 'Todas',
-		'ACTIVETASKS'     : 'Activas',
-		'CANCEL_BTN'      : 'Cancelar',
-		'COMPLETEDTASKS'  : 'Completadas',
-		'EDIT_BTN'        : 'Editar',
-		'SUBMIT_BTN'      : 'Aceptar',
-		'TASKCOLOR_TITLE' : 'Color de la tarea',
-		'TEXTAREA_PH'     : 'Mmm... ¿Qué hay que hacer?'
-	});
 }])
 
-.controller('HomeController', ['$rootScope', '$scope', '$routeParams', 
-   'tasksStorage', '$location', '$timeout', '$translate',
-   function($rootScope, $scope, $routeParams, tasksStorage, $location, $timeout, $translate){
+.controller('HomeController', ['$scope', '$routeParams', 'tasksStorage', 
+   '$location', '$timeout','COLORS', 'SETTINGS',
+   function($scope, $routeParams, tasksStorage, $location, $timeout, COLORS, SETTINGS){
 		var tasks = $scope.tasks = tasksStorage.get();
-		var colorsArray = [
-			'#1abc9c', '#2ecc71', '#3498db',
-			'#9b59b6', '#34495e', '#f1c40f',
-			'#e67e22', '#95a5a6', '#e74c3c',
-			'#d35400'];
-		var colorsNameArray = [
-			'Turquoise', 'Emerald', 'Peter River', 
-			'Amethyst', 'Wet Asphalt', 'Sun Flower',
-			'Carrot', 'Concrete', 'Alizarin',
-			'Orange'
-		];
-		$translate.uses($rootScope.lang);
-		$scope.color = 8;
-		$scope.colorMax = colorsArray.length -1 ;
-		$scope.newTask = '';
+		
+		$scope.color = SETTINGS.DEF_TASK_COLOR;
+		$scope.colorMax = COLORS.length() - 1;
 		$scope.editing = false;
-		$scope.taskIndex = -1;
+		$scope.newTask = '';
 		$scope.showMenu = false;
 		$scope.status = '';
-	
+		$scope.taskIndex = -1;
 
 		/**
 		 *	We watch if tasks object has changed (with some edited or added task)
@@ -59,13 +27,11 @@ angular.module('home',['ngRoute','rzModule','pascalprecht.translate'])
 		 * equality rather than for reference.
 		**/
 		$scope.$watch('tasks', function(newValue, oldValue){
-			$scope.allChecked = !$scope.remainingCount;
 			// This prevents unneeded calls to the localStorage
 			if(newValue !== oldValue) {
 				tasksStorage.put(tasks);
 			}
 		},true);
-
 
 		$scope.addTask = function() {
 			var newTask = $scope.newTask.trim();
@@ -82,7 +48,7 @@ angular.module('home',['ngRoute','rzModule','pascalprecht.translate'])
 			}
 			tasks.push({
 				title: newTask,
-				color: colorsArray[$scope.color], 
+				color: $scope.color, 
 				completed: false
 			});	
 			$scope.resetParams();
@@ -99,28 +65,29 @@ angular.module('home',['ngRoute','rzModule','pascalprecht.translate'])
 		$scope.changeStatus = function(status) {
 			$scope.status = status;
 			$scope.statusFilter = (status === 'active') ?
-				{ completed: false} : (status === 'completed') ?
-				{ completed: true} : null;
+				{ completed: false } : (status === 'completed') ?
+				{ completed: true } : null;
 		};
 
 		$scope.colorTranslate = function(value) {
-			header.style.backgroundColor = colorsArray[value];
-			return colorsNameArray[value].toUpperCase();
+			var color = COLORS.getColor(value);
+			header.style.backgroundColor = color[1];
+			return color[0];
 		};
 
 		$scope.countChars = function(){
-			if ((140 - $scope.newTask.length) <= 0) {
+			if ((SETTINGS.REMAINING_CHARS - $scope.newTask.length) <= 0) {
 				$scope.maxLength = true;
 			} else {
 				$scope.maxLength = false;
 			}
-			return parseInt((140 - $scope.newTask.length), 10);
+			return parseInt((SETTINGS.REMAINING_CHARS - $scope.newTask.length), 10);
 		};
 
 		$scope.editTask = function(task) {
 			$scope.taskIndex = parseInt(tasks.indexOf(task),10);
 			$scope.newTask = task.title;
-			$scope.color = parseInt(colorsArray.indexOf(task.color),10);
+			$scope.color = task.color;
 			$scope.editing = true;
 			$scope.showPanel();
 		};
@@ -128,12 +95,16 @@ angular.module('home',['ngRoute','rzModule','pascalprecht.translate'])
 		$scope.doneEditing = function() {
 			var task = tasks[$scope.taskIndex];
 			task.title = $scope.newTask.trim();
-			task.color = colorsArray[$scope.color];
+			task.color = $scope.color;
 		
 			if(!task.title) {
 				$scope.removeTask(task);
 			}
 			$scope.resetParams();
+		};
+
+		$scope.getTaskColor = function(index){
+			return COLORS.getColor(index)[1];
 		};
 
 		$scope.hidePanel = function(){
@@ -147,7 +118,7 @@ angular.module('home',['ngRoute','rzModule','pascalprecht.translate'])
 
 		$scope.resetParams = function() {
 			$scope.newTask = '';
-			$scope.color = 8;
+			$scope.color = SETTINGS.DEF_TASK_COLOR;
 			$scope.editing = false;
 			$scope.taskIndex = -1;
 			$scope.hidePanel();

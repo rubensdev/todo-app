@@ -85,10 +85,18 @@ body, html {
 	width: 94px;
 }
 
+.sliderContainer {
+	padding: 16px;
+}
 
 /*****************
  * FIRST RUN CARDS
  *****************/
+
+@-webkit-keyframes fadeOutCard {
+	0% { opacity: 1; -webkit-transform: translate(0,0);}
+	100% { opacity: 0; -webkit-transform: translate(100%,0%);}
+}
 
 .card {
 	background-color: #E74C3C;
@@ -100,7 +108,7 @@ body, html {
 }
 
 .card.hide {
-	opacity: 0;
+	-webkit-animation: fadeOutCard .875s forwards;
 }
 
 .card h1 {
@@ -175,6 +183,9 @@ body, html {
 	width: 48px;
 }
 
+/*******
+ *******/
+
 header {
 	background-color: #F00;
 	height: 72px;
@@ -190,39 +201,6 @@ header button {
 	width: 64px;
 }
 
-/****
- * COMMON
- ****/
-*, *:before, *:after {
-  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
-
-*:focus {
-	outline: none;
-	-webkit-appareance: none;
-}
-
-input {
-	border: none;
-	font-family: 'Droid Sans';
-	border-radius: 0px;
-}
-
-.icon {
-	background: url('../assets/img/iconsmap.png');
-}
-
-h1 { 
-	color: #333;
-	font-family: 'Droid Sans Bold';
-}
-p { 
-	color: #444;
-	font-family: inherit;
-}
-
-[ng-cloak] { display: none; } /* TODO: What was this used for? */
 
 /****
  * FILTERS 
@@ -360,6 +338,41 @@ p {
 #taskList li .menuTaskPanel #deleteTask {
 	background-position: -100px -2px;
 }
+
+/****
+ * COMMON
+ ****/
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+*:focus {
+	outline: none;
+	-webkit-appareance: none;
+}
+
+input {
+	border: none;
+	font-family: 'Droid Sans';
+	border-radius: 0px;
+}
+
+.icon {
+	background: url('../assets/img/iconsmap.png');
+}
+
+h1 { 
+	color: #333;
+	font-family: 'Droid Sans Bold';
+}
+p { 
+	color: #444;
+	font-family: inherit;
+}
+
+[ng-cloak] { display: none; } /* TODO: What was this used for? */
+
 
 
 /*****

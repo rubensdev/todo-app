@@ -6,11 +6,13 @@
 		<textarea name="newTask" placeholder="{{ 'TEXTAREA_PH' | translate}}" ng-model="newTask" maxlength="140"></textarea>
 		<p class="counter" ng-class="{'red' : maxLength}" ng-bind="countChars()"></p>
 		<h3 translate="TASKCOLOR_TITLE"></h3>
-		<rzslider
-			rz-slider-floor="0"
-			rz-slider-ceil="colorMax"
-			rz-slider-model="color"
-			rz-slider-translate="colorTranslate"></rzslider>
+		<div class="sliderContainer">
+			<rzslider
+				rz-slider-floor="0"
+				rz-slider-ceil="colorMax"
+				rz-slider-model="color"
+				rz-slider-translate="colorTranslate"></rzslider>
+		</div>
 		<div class="buttonsPanel">
 			<div id="cancelButton" class="button medium" ng-click="cancel()" translate="CANCEL_BTN"></div>
 			<div id="submitButton" class="button medium" ng-click="editing? doneEditing() : addTask()">
@@ -25,7 +27,7 @@
 	</ul>
 	<ul id="taskList">
 		<li ng-repeat="task in tasks | filter:statusFilter track by $index">
-			<div class="taskView" style="border-left: 48px solid {{task.color}};">
+			<div class="taskView" style="border-left: 48px solid {{getTaskColor(task.color)}};">
 				<input class="taskCheck icon" type="checkbox" ng-model="task.completed" />
 				<div class="taskTitle" ng-click="showMenu = !showMenu">{{ task.title }}</div>	
 			</div>

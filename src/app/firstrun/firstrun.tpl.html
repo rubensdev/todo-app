@@ -1,5 +1,5 @@
 <section id="firstrun" ng-controller="FirstRunController">
-	<div id="card3" class="card" ng-class="{'hide' : nextCard === 3}">
+	<div id="card3" class="card" ng-class="{'hide' : nextCard < 0}">
 		<div class="hints">
 		 	<h1 translate="MODDELRESET_TITLE"></h1>
 		 	<p translate="MODDELRESET_MSG1"></p>
@@ -8,7 +8,7 @@
 			<a translate="NEXT_GO" href ng-click="next()"></a>
 		</div>
 	</div>
-	<div id="card2" class="card" ng-class="{'hide' : nextCard === 2}">
+	<div id="card2" class="card" ng-class="{'hide' : nextCard < 1}">
 		<div class="hints">
 			<h1 translate="ADDINGTASK_TITLE"></h1>
 			<div id="img_example" class="icon"></div>
@@ -16,9 +16,9 @@
 			<a translate="NEXT_BUTTON" href ng-click="next()"></a>
 		</div>
 	</div>
-	<div id="card1" class="card" ng-class="{'hide': nextCard === 1}">
-		<img id="logo" ng-class="{'show': showLogo}" src="assets/img/applogo.png" />
-		<div id="appTitle" ng-class="{'show': showText}">
+	<div id="card1" class="card" ng-class="{'hide' : nextCard < 2}">
+		<img id="logo" ng-class="{'show': showLogo }" src="assets/img/applogo.png" />
+		<div id="appTitle" ng-class="{'show': showText }">
 			<h1>FLAT TODO LIST</h1>
 			<h2>By RubensDEV</h2>
 			<p translate="WELCOME_APP"></p>

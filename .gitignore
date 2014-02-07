@@ -3,4 +3,9 @@
 build/
 bin/
 node_modules/
-vendor/
+vendor/angular
+vendor/angular-mocks
+vendor/angular-route
+vendor/angular-translate
+vendor/angular-touch
+vendor/angular-ui-router
